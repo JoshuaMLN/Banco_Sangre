@@ -383,6 +383,7 @@
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="text_NombreKeyTyped"/>
                   </Events>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Document document_nombre = text_Nombre.getDocument();&#xa;&#xa;DocumentFilter filter_nombre = new DocumentFilter() {&#xa;    @Override&#xa;    public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 20)&#xa;        if ((fb.getDocument().getLength() + text.length()) &lt;= 20) {&#xa;            super.insertString(fb, offset, text, attr);&#xa;        }&#xa;    }&#xa;&#xa;    @Override&#xa;    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 20)&#xa;        if ((fb.getDocument().getLength() - length + text.length()) &lt;= 20) {&#xa;            super.replace(fb, offset, length, text, attrs);&#xa;        }&#xa;    }&#xa;};&#xa;((AbstractDocument) document_nombre).setDocumentFilter(filter_nombre);"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
@@ -405,6 +406,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="Document document_motivo = text_Motivo.getDocument();&#xa;&#xa;DocumentFilter filter_motivo = new DocumentFilter() {&#xa;    @Override&#xa;    public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 50)&#xa;        if ((fb.getDocument().getLength() + text.length()) &lt;= 50) {&#xa;            super.insertString(fb, offset, text, attr);&#xa;        }&#xa;    }&#xa;&#xa;    @Override&#xa;    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 50)&#xa;        if ((fb.getDocument().getLength() - length + text.length()) &lt;= 50) {&#xa;            super.replace(fb, offset, length, text, attrs);&#xa;        }&#xa;    }&#xa;};&#xa;((AbstractDocument) document_motivo).setDocumentFilter(filter_motivo);"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
@@ -520,6 +522,7 @@
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="text_CantidadKeyTyped"/>
                   </Events>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="Document document_cantidad = text_Cantidad.getDocument();&#xa;&#xa;DocumentFilter filter_cantidad = new DocumentFilter() {&#xa;    @Override&#xa;    public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 3)&#xa;        if ((fb.getDocument().getLength() + text.length()) &lt;= 3) {&#xa;            super.insertString(fb, offset, text, attr);&#xa;        }&#xa;    }&#xa;&#xa;    @Override&#xa;    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 3)&#xa;        if ((fb.getDocument().getLength() - length + text.length()) &lt;= 3) {&#xa;            super.replace(fb, offset, length, text, attrs);&#xa;        }&#xa;    }&#xa;};&#xa;((AbstractDocument) document_cantidad).setDocumentFilter(filter_cantidad);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>

@@ -26,11 +26,11 @@ public class ControladorExtraccion {
                     JOptionPane.showMessageDialog(null, "Complete todos los campos");
                 } else {
                     try {
-
                         Float Volumen = Float.parseFloat(vista.txtVolumen.getText());
 
                         if (Volumen > 0 ) {
-                            ExtraccionSangre c = new ExtraccionSangre(Volumen, 
+                            if (Volumen <= 500){
+                                ExtraccionSangre c = new ExtraccionSangre(Volumen, 
                                     vista.comboGrupoSang.getSelectedItem().toString(),vista.comboRH.getSelectedItem().toString(),
                                     vista.comboDonantes.getSelectedItem().toString());
                             
@@ -43,6 +43,10 @@ public class ControladorExtraccion {
                             JOptionPane.showMessageDialog(null, "Extraccion Registrada");
                             actualizarTabla();
                             limpiarCampos();
+                            }
+                            else {
+                            JOptionPane.showMessageDialog(null, "El volumen máximo aceptado es 500ml");
+                        }
                         } else {
                             JOptionPane.showMessageDialog(null, "Digite datos validos");
                         }

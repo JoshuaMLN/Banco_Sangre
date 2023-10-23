@@ -3,10 +3,14 @@ import java.sql.*;
 
 
 public class ConexionBaseDatos {
-    
+    /*
     public static String url = "jdbc:mysql://root:dxlJtqJwsB7XOkUCJrPO@containers-us-west-186.railway.app:7892/railway";
     public static String usuario = "root";
     public static String contraseña = "dxlJtqJwsB7XOkUCJrPO";
+    */
+    public static String url = "jdbc:mysql://localhost:3306/bancosangre";
+    public static String usuario = "root";
+    public static String contraseña = "root";
     public static String clase = "com.mysql.cj.jdbc.Driver";
     
     

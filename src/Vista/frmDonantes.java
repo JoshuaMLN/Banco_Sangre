@@ -4,6 +4,12 @@
  */
 package Vista;
 
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AbstractDocument;
+
 public class frmDonantes extends javax.swing.JFrame {
 
     public frmDonantes() {
@@ -38,8 +44,6 @@ public class frmDonantes extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtDNIEmpleado = new javax.swing.JTextField();
         lblTelefonoEmpleado = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtEdad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtFechaNac = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
@@ -133,6 +137,26 @@ public class frmDonantes extends javax.swing.JFrame {
         jLabel4.setText("Teléfono (celular):");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
+        Document document_nombre = txtNombreDonante.getDocument();
+
+        DocumentFilter filter_nombre = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 20)
+                if ((fb.getDocument().getLength() + text.length()) <= 20) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 20)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 20) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_nombre).setDocumentFilter(filter_nombre);
         txtNombreDonante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreDonanteActionPerformed(evt);
@@ -145,6 +169,26 @@ public class frmDonantes extends javax.swing.JFrame {
         });
         jPanel1.add(txtNombreDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 160, -1));
 
+        Document document_correo = txtCorreo.getDocument();
+
+        DocumentFilter filter_correo = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 30)
+                if ((fb.getDocument().getLength() + text.length()) <= 30) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 30)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 30) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_correo).setDocumentFilter(filter_correo);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
@@ -152,6 +196,26 @@ public class frmDonantes extends javax.swing.JFrame {
         });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 160, -1));
 
+        Document document_dni = txtDNIEmpleado.getDocument();
+
+        DocumentFilter filter_dni = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 8)
+                if ((fb.getDocument().getLength() + text.length()) <= 8) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 8)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 8) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_dni).setDocumentFilter(filter_dni);
         txtDNIEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDNIEmpleadoKeyTyped(evt);
@@ -159,6 +223,26 @@ public class frmDonantes extends javax.swing.JFrame {
         });
         jPanel1.add(txtDNIEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, -1));
 
+        Document document_telefono = lblTelefonoEmpleado.getDocument();
+
+        DocumentFilter filter_telefono = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 9)
+                if ((fb.getDocument().getLength() + text.length()) <= 9) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 9)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 9) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_telefono).setDocumentFilter(filter_telefono);
         lblTelefonoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 lblTelefonoEmpleadoKeyTyped(evt);
@@ -166,21 +250,30 @@ public class frmDonantes extends javax.swing.JFrame {
         });
         jPanel1.add(lblTelefonoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 160, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Edad:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-
-        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEdadKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 160, -1));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Fecha Nacimiento:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
+        Document document_fecha = txtFechaNac.getDocument();
+
+        DocumentFilter filter_fecha = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 10)
+                if ((fb.getDocument().getLength() + text.length()) <= 10) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 10)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 10) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_fecha).setDocumentFilter(filter_fecha);
         txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaNacActionPerformed(evt);
@@ -232,11 +325,6 @@ public class frmDonantes extends javax.swing.JFrame {
         char c=evt.getKeyChar();
         if((c<'0'||c>'9')&&(c!='-')) evt.consume();
     }//GEN-LAST:event_txtFechaNacKeyTyped
-
-    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
-        char c=evt.getKeyChar();
-        if((c<'0'||c>'9')) evt.consume();
-    }//GEN-LAST:event_txtEdadKeyTyped
 
     private void lblTelefonoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblTelefonoEmpleadoKeyTyped
         char c=evt.getKeyChar();
@@ -308,7 +396,6 @@ public class frmDonantes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -323,7 +410,6 @@ public class frmDonantes extends javax.swing.JFrame {
     public javax.swing.JTable tblDonanteRepo;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtDNIEmpleado;
-    public javax.swing.JTextField txtEdad;
     public javax.swing.JTextField txtFechaNac;
     public javax.swing.JTextField txtNombreDonante;
     // End of variables declaration//GEN-END:variables

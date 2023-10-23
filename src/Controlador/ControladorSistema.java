@@ -11,6 +11,7 @@ import Vista.frmPrincipalAdmin;
 import Vista.frmSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -43,13 +44,6 @@ public class ControladorSistema {
                         vista.txtContraseña.setText("");
                         JOptionPane.showMessageDialog(vista, "Intente nuevamente");
                     }
-                }
-            }
-        );
-        
-        this.vista.btnSalir.addActionListener( new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    System.exit(0); 
                 }
             }
         );

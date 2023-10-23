@@ -7,7 +7,7 @@ public class DonanteArreglo {
     private int indice;
     private final String[] cabecera =  {"CODIGO","NOMBRE",
                             "FECHA NAC.","DNI", "TELEFONO",
-                            "CORREO", "EDAD"};
+                            "CORREO"};
     
     public DonanteArreglo(int tamano) {
         this.empleados = new Donante[tamano];
@@ -56,8 +56,6 @@ public class DonanteArreglo {
                 resultado[indice][3] = this.empleados[indice].getDNI();
                 resultado[indice][4] = this.empleados[indice].getTelefono();
                 resultado[indice][5] = this.empleados[indice].getFechaNac();
-                resultado[indice][6] = this.empleados[indice].getEdad();
-                
             }
         }
         return resultado;

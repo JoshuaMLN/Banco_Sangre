@@ -23,192 +23,306 @@ public class frmPrincipalUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        casilla_logo = new javax.swing.JPanel();
+        txt_Proyecto = new javax.swing.JLabel();
+        txt_Empresa = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        txt_Empresa1 = new javax.swing.JLabel();
+        casilla_perfil = new javax.swing.JPanel();
+        text_SABS = new javax.swing.JLabel();
+        text_Nombre = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        text_Acceso = new javax.swing.JLabel();
+        lblAcceso = new javax.swing.JLabel();
+        foto = new javax.swing.JLabel();
+        casilla_servicios = new javax.swing.JPanel();
+        icon_donantes = new javax.swing.JLabel();
+        icon_solicitudes = new javax.swing.JLabel();
+        icon_extracciones = new javax.swing.JLabel();
+        btnDonantes = new javax.swing.JButton();
         btnSolicitud = new javax.swing.JButton();
         btnExtraccion = new javax.swing.JButton();
-        btnDonantes = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnSalir = new javax.swing.JButton();
-        lblUsuario = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        txt_Donante = new javax.swing.JTextArea();
+        txt_Solicitud = new javax.swing.JTextArea();
+        txt_Extraccion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SABS");
         setBackground(new java.awt.Color(243, 95, 95));
+        setSize(new java.awt.Dimension(520, 300));
 
-        jPanel1.setBackground(new java.awt.Color(243, 95, 95));
+        casilla_logo.setBackground(new java.awt.Color(243, 95, 95));
+        casilla_logo.setPreferredSize(new java.awt.Dimension(50, 0));
 
-        btnSolicitud.setBackground(new java.awt.Color(0, 204, 51));
-        btnSolicitud.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSolicitud.setForeground(new java.awt.Color(255, 255, 255));
-        btnSolicitud.setText("Solicitud");
-        btnSolicitud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitudActionPerformed(evt);
-            }
-        });
+        txt_Proyecto.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Proyecto.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_Proyecto.setForeground(new java.awt.Color(255, 255, 255));
+        txt_Proyecto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_Proyecto.setText("SISTEMA DE ADMINISTRACIÓN DEL BANCO DE SANGRE");
 
-        btnExtraccion.setBackground(new java.awt.Color(0, 204, 51));
-        btnExtraccion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExtraccion.setForeground(new java.awt.Color(255, 255, 255));
-        btnExtraccion.setText("Extraccion");
+        txt_Empresa.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Empresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_Empresa.setForeground(new java.awt.Color(255, 204, 204));
+        txt_Empresa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_Empresa.setText("Blood Care Bank");
 
-        btnDonantes.setBackground(new java.awt.Color(0, 204, 51));
-        btnDonantes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDonantes.setForeground(new java.awt.Color(255, 255, 255));
-        btnDonantes.setText("Donantes");
-        btnDonantes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDonantesActionPerformed(evt);
-            }
-        });
+        logo.setBackground(new java.awt.Color(255, 204, 204));
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Logo_50x50.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/donantes1-removebg-preview (2).png"))); // NOI18N
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/donantes-removebg-preview (1).png"))); // NOI18N
-
-        jPanel2.setBackground(new java.awt.Color(0, 204, 51));
-
-        btnSalir.setBackground(new java.awt.Color(0, 204, 51));
-        btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSalir.setForeground(new java.awt.Color(0, 204, 51));
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/puerta salida (2).png"))); // NOI18N
+        btnSalir.setBackground(new java.awt.Color(243, 95, 95));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_CerrarSesion_20x20.png"))); // NOI18N
         btnSalir.setBorder(null);
-        btnSalir.setBorderPainted(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
 
-        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(153, 0, 0));
-        lblUsuario.setText("User");
+        txt_Empresa1.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Empresa1.setForeground(new java.awt.Color(255, 204, 204));
+        txt_Empresa1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_Empresa1.setText("Cerrar Sesión");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Usuario:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        javax.swing.GroupLayout casilla_logoLayout = new javax.swing.GroupLayout(casilla_logo);
+        casilla_logo.setLayout(casilla_logoLayout);
+        casilla_logoLayout.setHorizontalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, casilla_logoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_Proyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_Empresa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_Empresa1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblUsuario))))
+        casilla_logoLayout.setVerticalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_logoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_Proyecto)
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_Empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_Empresa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(20, 20, 20))
+        );
+
+        casilla_perfil.setBackground(new java.awt.Color(255, 204, 204));
+
+        text_SABS.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        text_SABS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text_SABS.setText("SABS");
+
+        text_Nombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        text_Nombre.setText("Nombre:");
+
+        lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(243, 95, 95));
+        lblUsuario.setText("tu_nombre");
+
+        text_Acceso.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        text_Acceso.setText("Acceso:");
+
+        lblAcceso.setBackground(new java.awt.Color(255, 255, 255));
+        lblAcceso.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAcceso.setForeground(new java.awt.Color(243, 95, 95));
+        lblAcceso.setText("Usuario");
+
+        foto.setBackground(new java.awt.Color(255, 204, 204));
+        foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_FotoPerfil_80x80.png"))); // NOI18N
+
+        javax.swing.GroupLayout casilla_perfilLayout = new javax.swing.GroupLayout(casilla_perfil);
+        casilla_perfil.setLayout(casilla_perfilLayout);
+        casilla_perfilLayout.setHorizontalGroup(
+            casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_perfilLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(text_Acceso)
+                    .addComponent(text_Nombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(lblAcceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
+            .addGroup(casilla_perfilLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(text_SABS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel3.setBackground(new java.awt.Color(0, 204, 51));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        casilla_perfilLayout.setVerticalGroup(
+            casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_perfilLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(text_SABS)
+                .addGap(11, 11, 11)
+                .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_Nombre)
+                    .addComponent(lblUsuario))
+                .addGap(11, 11, 11)
+                .addGroup(casilla_perfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_Acceso)
+                    .addComponent(lblAcceso))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 51, Short.MAX_VALUE)
-        );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/extraccionsangre-removebg-preview (1).png"))); // NOI18N
+        casilla_servicios.setBackground(new java.awt.Color(255, 255, 255));
+        casilla_servicios.setPreferredSize(new java.awt.Dimension(520, 297));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDonantes, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(btnSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnExtraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        icon_donantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Donantes_62x62.png"))); // NOI18N
+
+        icon_solicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Solicitudes_62x62.png"))); // NOI18N
+
+        icon_extracciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Extraccion_62x62.png"))); // NOI18N
+
+        btnDonantes.setBackground(new java.awt.Color(255, 204, 204));
+        btnDonantes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDonantes.setForeground(new java.awt.Color(243, 95, 95));
+        btnDonantes.setText("REGISTRAR DONANTE");
+
+        btnSolicitud.setBackground(new java.awt.Color(255, 204, 204));
+        btnSolicitud.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSolicitud.setForeground(new java.awt.Color(243, 95, 95));
+        btnSolicitud.setText("REGISTRAR SOLICITUD");
+        btnSolicitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitudActionPerformed(evt);
+            }
+        });
+
+        btnExtraccion.setBackground(new java.awt.Color(255, 204, 204));
+        btnExtraccion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExtraccion.setForeground(new java.awt.Color(243, 95, 95));
+        btnExtraccion.setText("REGISTRAR EXTRACCIÓN");
+        btnExtraccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExtraccionActionPerformed(evt);
+            }
+        });
+
+        txt_Donante.setEditable(false);
+        txt_Donante.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Donante.setColumns(20);
+        txt_Donante.setLineWrap(true);
+        txt_Donante.setRows(2);
+        txt_Donante.setText("- Añade nuevos donantes de sangre.\n- Edita o elimina donantes registrados.");
+        txt_Donante.setWrapStyleWord(true);
+
+        txt_Solicitud.setEditable(false);
+        txt_Solicitud.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Solicitud.setColumns(20);
+        txt_Solicitud.setLineWrap(true);
+        txt_Solicitud.setRows(2);
+        txt_Solicitud.setText("- Añade nuevas solicitudes de sangre.\n- Edita o elimina solicitudes registradas.");
+        txt_Solicitud.setWrapStyleWord(true);
+
+        txt_Extraccion.setEditable(false);
+        txt_Extraccion.setBackground(new java.awt.Color(255, 255, 255));
+        txt_Extraccion.setColumns(20);
+        txt_Extraccion.setLineWrap(true);
+        txt_Extraccion.setRows(2);
+        txt_Extraccion.setText("- Añade nuevas extracciones de sangre.\n- Edita o elimina extracciones registradas.");
+        txt_Extraccion.setWrapStyleWord(true);
+
+        javax.swing.GroupLayout casilla_serviciosLayout = new javax.swing.GroupLayout(casilla_servicios);
+        casilla_servicios.setLayout(casilla_serviciosLayout);
+        casilla_serviciosLayout.setHorizontalGroup(
+            casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_serviciosLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(icon_donantes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(icon_solicitudes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(icon_extracciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDonantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_Solicitud, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnExtraccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_Donante)
+                    .addComponent(txt_Extraccion))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSolicitud)
-                            .addComponent(btnExtraccion)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(btnDonantes)))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        casilla_serviciosLayout.setVerticalGroup(
+            casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_serviciosLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon_donantes, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(casilla_serviciosLayout.createSequentialGroup()
+                        .addComponent(btnDonantes)
+                        .addGap(0, 0, 0)
+                        .addComponent(txt_Donante, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icon_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(casilla_serviciosLayout.createSequentialGroup()
+                        .addComponent(btnSolicitud)
+                        .addGap(0, 0, 0)
+                        .addComponent(txt_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(casilla_serviciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(casilla_serviciosLayout.createSequentialGroup()
+                        .addComponent(btnExtraccion)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txt_Extraccion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(icon_extracciones))
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(casilla_perfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(casilla_servicios, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+            .addComponent(casilla_logo, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(casilla_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(casilla_perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(casilla_servicios, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDonantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonantesActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDonantesActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnExtraccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExtraccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExtraccionActionPerformed
 
     private void btnSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitudActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSolicitudActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,13 +379,24 @@ public class frmPrincipalUser extends javax.swing.JFrame {
     public javax.swing.JButton btnExtraccion;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnSolicitud;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel casilla_logo;
+    public javax.swing.JPanel casilla_perfil;
+    public javax.swing.JPanel casilla_servicios;
+    public javax.swing.JLabel foto;
+    private javax.swing.JLabel icon_donantes;
+    private javax.swing.JLabel icon_extracciones;
+    private javax.swing.JLabel icon_solicitudes;
+    public javax.swing.JLabel lblAcceso;
     public javax.swing.JLabel lblUsuario;
+    public javax.swing.JLabel logo;
+    private javax.swing.JLabel text_Acceso;
+    private javax.swing.JLabel text_Nombre;
+    private javax.swing.JLabel text_SABS;
+    private javax.swing.JTextArea txt_Donante;
+    private javax.swing.JLabel txt_Empresa;
+    private javax.swing.JLabel txt_Empresa1;
+    private javax.swing.JTextArea txt_Extraccion;
+    private javax.swing.JLabel txt_Proyecto;
+    private javax.swing.JTextArea txt_Solicitud;
     // End of variables declaration//GEN-END:variables
 }

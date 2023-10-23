@@ -58,6 +58,7 @@ public class ControladorPrincipalUser {
         this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);
         this.vista.lblUsuario.setText(modelo.getUsuario());
+        
     }
 
     

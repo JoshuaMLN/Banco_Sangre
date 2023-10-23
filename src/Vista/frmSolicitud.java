@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AbstractDocument;
 
 public class frmSolicitud extends javax.swing.JFrame {
 
@@ -112,6 +117,26 @@ public class frmSolicitud extends javax.swing.JFrame {
         text_Nombre.setLineWrap(true);
         text_Nombre.setRows(5);
         text_Nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Document document_nombre = text_Nombre.getDocument();
+
+        DocumentFilter filter_nombre = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 20)
+                if ((fb.getDocument().getLength() + text.length()) <= 20) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 20)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 20) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_nombre).setDocumentFilter(filter_nombre);
         text_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 text_NombreKeyTyped(evt);
@@ -124,6 +149,26 @@ public class frmSolicitud extends javax.swing.JFrame {
         text_Motivo.setLineWrap(true);
         text_Motivo.setRows(5);
         text_Motivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        Document document_motivo = text_Motivo.getDocument();
+
+        DocumentFilter filter_motivo = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 50)
+                if ((fb.getDocument().getLength() + text.length()) <= 50) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 50)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 50) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_motivo).setDocumentFilter(filter_motivo);
 
         Tipo_de_Sangre.setText("Grupo Sanguíneo");
 
@@ -192,6 +237,26 @@ public class frmSolicitud extends javax.swing.JFrame {
                 text_CantidadKeyTyped(evt);
             }
         });
+        Document document_cantidad = text_Cantidad.getDocument();
+
+        DocumentFilter filter_cantidad = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 3)
+                if ((fb.getDocument().getLength() + text.length()) <= 3) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 3)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 3) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_cantidad).setDocumentFilter(filter_cantidad);
 
         Tipo_de_Sangre1.setText("Rh");
 
@@ -322,11 +387,9 @@ public class frmSolicitud extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregar)
-                            .addComponent(btnRegresar))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Panel_Solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnRegresar)))
+                    .addComponent(Panel_Solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

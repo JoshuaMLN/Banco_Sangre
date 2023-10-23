@@ -5,6 +5,12 @@
  */
 package Vista;
 
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AbstractDocument;
+
 public class frmExtraccion extends javax.swing.JFrame {
 
     /**
@@ -58,6 +64,27 @@ public class frmExtraccion extends javax.swing.JFrame {
         jLabel5.setText("Grupo Sanguineo");
 
         comboGrupoSang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "O", "AB" }));
+
+        Document document_volumen = txtVolumen.getDocument();
+
+        DocumentFilter filter_volumen = new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 3)
+                if ((fb.getDocument().getLength() + text.length()) <= 3) {
+                    super.insertString(fb, offset, text, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                // Limitar el número de caracteres permitidos (en este caso, 3)
+                if ((fb.getDocument().getLength() - length + text.length()) <= 3) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        };
+        ((AbstractDocument) document_volumen).setDocumentFilter(filter_volumen);
 
         jLabel8.setText("Volumen");
 

@@ -7,6 +7,8 @@ import Datos.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class ControladorRegistrarDonantes {
     private frmDonantes vista;
@@ -22,32 +24,53 @@ public class ControladorRegistrarDonantes {
         
         this.vista.btnRegistrar.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                String numTelefono;
-                int edad;
-                if (vista.txtCorreo.getText().isEmpty() || vista.txtEdad.getText().isEmpty()
-                        || vista.txtNombreDonante.getText().isEmpty() || vista.txtFechaNac.getText().isEmpty()
-                        || vista.txtDNIEmpleado.getText().isEmpty() || vista.lblTelefonoEmpleado.getText().isEmpty()) {
+                //Validar formato correo
+                String correo = vista.txtCorreo.getText();
+                String regex_correo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
+                Pattern pattern_correo = Pattern.compile(regex_correo);
+                Matcher matcher_correo = pattern_correo.matcher(correo);
+                //Validar formato fecha
+                String fechaNacimiento = vista.txtFechaNac.getText();
+                String regex_fechaNacimiento = "^\\d{2}-\\d{2}-\\d{4}$";
+                Pattern pattern_fechaNacimiento = Pattern.compile(regex_fechaNacimiento);
+                Matcher matcher_fechaNacimiento = pattern_fechaNacimiento.matcher(fechaNacimiento);
+                if (
+                    vista.txtCorreo.getText().isEmpty() || 
+                    vista.txtNombreDonante.getText().isEmpty() || 
+                    vista.txtFechaNac.getText().isEmpty() || 
+                    vista.txtDNIEmpleado.getText().isEmpty() || 
+                    vista.lblTelefonoEmpleado.getText().isEmpty()
+                    )
+                {
                     JOptionPane.showMessageDialog(null, "Complete todos los campos");
-                } else {
+                }
+                else if (!matcher_correo.matches()) {
+                    JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
+                } 
+                else if (!matcher_fechaNacimiento.matches()) {
+                    JOptionPane.showMessageDialog(null, "La Fecha de Nacimiento no es válida.");
+                } 
+                else if (Integer.parseInt(vista.txtDNIEmpleado.getText()) < 10000000){
+                    JOptionPane.showMessageDialog(null, "El DNI debe tener 8 digitos");
+                }
+                else if (Integer.parseInt(vista.lblTelefonoEmpleado.getText()) < 100000000){
+                    JOptionPane.showMessageDialog(null, "El Teléfono debe tiener 9 digitos");
+                }
+                else {
                     try {
-                        numTelefono=vista.lblTelefonoEmpleado.getText();
-                        try {
-                            edad = Integer.parseInt(vista.txtEdad.getText());
-                            Donante em = new Donante(vista.txtFechaNac.getText(),
-                                    edad, vista.txtNombreDonante.getText(),
-                                    vista.txtCorreo.getText(), vista.txtDNIEmpleado.getText(),
-                                    numTelefono);
-                            //Repositorio.donantes.agregar(em);
-                            modeloC.registrarDonante(em);
-                            System.out.println("Donante AGREGADO");
-                            JOptionPane.showMessageDialog(null, "Donante Agregado");
-                            actualizarTabla();
-                            limpiarCampos();
-                        } catch (NumberFormatException ex1) {
-                            JOptionPane.showMessageDialog(null, "Dato invalido");
-                        }
-                    } catch (NumberFormatException ex2) {
-                        JOptionPane.showMessageDialog(null, "Num. celular invalido");
+                        Donante em = new Donante(
+                            vista.txtFechaNac.getText(),
+                            vista.txtNombreDonante.getText(),
+                            vista.txtCorreo.getText(),
+                            vista.txtDNIEmpleado.getText(),
+                            vista.lblTelefonoEmpleado.getText());
+                        modeloC.registrarDonante(em);
+                        System.out.println("Donante AGREGADO");
+                        JOptionPane.showMessageDialog(null, "Donante Agregado");
+                        actualizarTabla();
+                        limpiarCampos();
+                    } catch (NumberFormatException ex1) {
+                        JOptionPane.showMessageDialog(null, "Dato invalido");
                     }
                 }
 
@@ -116,19 +139,21 @@ public class ControladorRegistrarDonantes {
                 int edad;
                 Donante donante = new Donante();
                 
-                if (vista.txtCorreo.getText().isEmpty() || vista.txtEdad.getText().isEmpty()
-                        || vista.txtNombreDonante.getText().isEmpty() || vista.txtFechaNac.getText().isEmpty()
-                        || vista.txtDNIEmpleado.getText().isEmpty() || vista.lblTelefonoEmpleado.getText().isEmpty()) {
+                if (vista.txtCorreo.getText().isEmpty() || 
+                    vista.txtNombreDonante.getText().isEmpty() || 
+                    vista.txtFechaNac.getText().isEmpty() || 
+                    vista.txtDNIEmpleado.getText().isEmpty() || 
+                    vista.lblTelefonoEmpleado.getText().isEmpty()
+                    )
+                {
                     JOptionPane.showMessageDialog(null, "Complete todos los campos");
                 } else {
                     try {
                         numTelefono=vista.lblTelefonoEmpleado.getText();
                         try {
-                            edad = Integer.parseInt(vista.txtEdad.getText());
                             donante.setNombre(vista.txtNombreDonante.getText());
                             donante.setFechaNac(vista.txtFechaNac.getText());
                             donante.setDNI(vista.txtDNIEmpleado.getText());
-                            donante.setEdad(edad);
                             donante.setTelefono(numTelefono);
                             donante.setCorreo(vista.txtCorreo.getText());
 
@@ -171,7 +196,6 @@ public class ControladorRegistrarDonantes {
         this.vista.txtDNIEmpleado.setText("");
         this.vista.lblTelefonoEmpleado.setText("");
         this.vista.txtCorreo.setText("");
-        this.vista.txtEdad.setText("");
     }
     public void llenarCampos(Donante donante){
         this.vista.txtNombreDonante.setText(donante.getNombre());
@@ -179,13 +203,11 @@ public class ControladorRegistrarDonantes {
         this.vista.txtDNIEmpleado.setText(donante.getDNI());
         this.vista.lblTelefonoEmpleado.setText(String.valueOf(donante.getTelefono()));
         this.vista.txtCorreo.setText(donante.getCorreo());
-        this.vista.txtEdad.setText(String.valueOf(donante.getEdad()));
     }
     public void iniciar() {
         this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);
         vista.btnEditarOK.setEnabled(false);
-        
         actualizarTabla();
     }
 }

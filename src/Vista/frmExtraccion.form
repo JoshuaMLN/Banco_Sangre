@@ -232,6 +232,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtVolumen">
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="Document document_volumen = txtVolumen.getDocument();&#xa;&#xa;DocumentFilter filter_volumen = new DocumentFilter() {&#xa;    @Override&#xa;    public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 3)&#xa;        if ((fb.getDocument().getLength() + text.length()) &lt;= 3) {&#xa;            super.insertString(fb, offset, text, attr);&#xa;        }&#xa;    }&#xa;&#xa;    @Override&#xa;    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {&#xa;        // Limitar el n&#xfa;mero de caracteres permitidos (en este caso, 3)&#xa;        if ((fb.getDocument().getLength() - length + text.length()) &lt;= 3) {&#xa;            super.replace(fb, offset, length, text, attrs);&#xa;        }&#xa;    }&#xa;};&#xa;((AbstractDocument) document_volumen).setDocumentFilter(filter_volumen);"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
