@@ -98,4 +98,31 @@ public class ConsultasSolicitud extends ConexionBaseDatos{
             }
         }
     }
+    
+    //Método para buscar solicitud
+    public Solicitud buscar(int id){
+        Connection con=conectar();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        Solicitud soli = new Solicitud();
+        String sql = "select * from solicitudes where cod_soli=? ";
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                soli.setCodigo(rs.getInt(1));
+                soli.setNombre(rs.getString(2));
+                soli.setMotivo(rs.getString(3));
+                soli.setGrupoSanguineo(rs.getString(4));
+                soli.setRh(rs.getString(5));
+                soli.setCantidad(rs.getFloat(6));
+                soli.setFecha(rs.getString(7));
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return soli;
+    }
+    
 }

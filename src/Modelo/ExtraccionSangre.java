@@ -4,21 +4,23 @@ package Modelo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class ExtraccionSangre {
     private static int contador=0;
     private int codigo;
-    private Date Fecha;
+    private String donante;
     private float Volumen;
     private String GrupoSanguineo;
     private String Rh;
+    private String Fecha;
     private SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/YYYY HH:mm");
-    private String donante;
+    
+    public ExtraccionSangre(){
+    }
     
     public ExtraccionSangre(float Volumen, String GrupoSanguineo, String Rh, String donante) {
         this.codigo=contador;
         contador++;
-        this.Fecha=new Date();
+        this.Fecha = sdf.format(new Date());
         this.Volumen = Volumen;
         this.GrupoSanguineo = GrupoSanguineo;
         this.Rh = Rh;
@@ -34,10 +36,10 @@ public class ExtraccionSangre {
     }
     
     public String getFecha() {
-        return sdf.format(Fecha);
+        return Fecha;
     }
 
-    public void setFecha(Date Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 

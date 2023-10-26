@@ -1,213 +1,239 @@
 
 package Controlador;
 
+import Datos.*;
 import Modelo.*;
 import Vista.*;
-import Datos.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.JButton;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class ControladorRegistrarDonantes {
-    private frmDonantes vista;
-    private DonanteArreglo modelo;
-    
+    private final frmDonantes vista;
     private ConsultasDonante modeloC = new ConsultasDonante();
-    
-    private int codEditar=0;
+    private int filaTabla=0;
+    private int codDonante=0;
 
-    public ControladorRegistrarDonantes(frmDonantes vista, DonanteArreglo modelo) {
+    public ControladorRegistrarDonantes(frmDonantes vista) {
         this.vista = vista;
-        this.modelo = modelo;
         
-        this.vista.btnRegistrar.addActionListener(new ActionListener(){
+        ActionListener btnAtrasAction = new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                //Validar formato correo
-                String correo = vista.txtCorreo.getText();
-                String regex_correo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
-                Pattern pattern_correo = Pattern.compile(regex_correo);
-                Matcher matcher_correo = pattern_correo.matcher(correo);
-                //Validar formato fecha
-                String fechaNacimiento = vista.txtFechaNac.getText();
-                String regex_fechaNacimiento = "^\\d{2}-\\d{2}-\\d{4}$";
-                Pattern pattern_fechaNacimiento = Pattern.compile(regex_fechaNacimiento);
-                Matcher matcher_fechaNacimiento = pattern_fechaNacimiento.matcher(fechaNacimiento);
-                if (
-                    vista.txtCorreo.getText().isEmpty() || 
-                    vista.txtNombreDonante.getText().isEmpty() || 
-                    vista.txtFechaNac.getText().isEmpty() || 
-                    vista.txtDNIEmpleado.getText().isEmpty() || 
-                    vista.lblTelefonoEmpleado.getText().isEmpty()
-                    )
-                {
-                    JOptionPane.showMessageDialog(null, "Complete todos los campos");
+                if(vista.btn_registrar.isEnabled()){
+                    regresar_menu_usuario();
                 }
-                else if (!matcher_correo.matches()) {
-                    JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
-                } 
-                else if (!matcher_fechaNacimiento.matches()) {
-                    JOptionPane.showMessageDialog(null, "La Fecha de Nacimiento no es válida.");
-                } 
-                else if (Integer.parseInt(vista.txtDNIEmpleado.getText()) < 10000000){
-                    JOptionPane.showMessageDialog(null, "El DNI debe tener 8 digitos");
+                else{
+                    JOptionPane.showMessageDialog(vista, "Debe terminar de editar al donante");
                 }
-                else if (Integer.parseInt(vista.lblTelefonoEmpleado.getText()) < 100000000){
-                    JOptionPane.showMessageDialog(null, "El Teléfono debe tiener 9 digitos");
-                }
-                else {
-                    try {
-                        Donante em = new Donante(
-                            vista.txtFechaNac.getText(),
-                            vista.txtNombreDonante.getText(),
-                            vista.txtCorreo.getText(),
-                            vista.txtDNIEmpleado.getText(),
-                            vista.lblTelefonoEmpleado.getText());
-                        modeloC.registrarDonante(em);
-                        System.out.println("Donante AGREGADO");
-                        JOptionPane.showMessageDialog(null, "Donante Agregado");
-                        actualizarTabla();
-                        limpiarCampos();
-                    } catch (NumberFormatException ex1) {
-                        JOptionPane.showMessageDialog(null, "Dato invalido");
-                    }
-                }
-
             }
-        }      
-        );
+        };
         
-        this.vista.btnEliminar.addActionListener(new ActionListener() {
+        this.vista.btn_atras_ico.addActionListener(btnAtrasAction);
+        
+        this.vista.btn_atras_txt.addActionListener(btnAtrasAction);
+        
+        this.vista.btn_registrar.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e) {
-                int fila = vista.tblDonanteRepo.getSelectedRow();//seleccion de fila de la tabla
-                
-                //eliminar
-                if (fila == -1) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar un donante");
-                } else {
-                    int valor = Integer.parseInt(vista.tblDonanteRepo.getValueAt(fila, 0).toString());
-                    modeloC.eliminarDonante(valor);
-                    actualizarTabla();
-                    System.out.println("Donante Eliminado");
-                    JOptionPane.showMessageDialog(null, "Donante Eliminado");
+                if(validar_campos()){
+                    Donante donante_new = crear_donante_campos();
+                    modeloC.registrarDonante(donante_new);
+                    JOptionPane.showMessageDialog(vista, "Donante registrado exitosamente");
+                    actualizar_tabla();
+                    limpiar_campos();
                 }
-
             }
+        });
+        
+        this.vista.btn_editar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar_seleccion_tabla()) {
+                    Donante donante_bd = donante_tabla();
+                    llenar_campos(donante_bd);
+                    vista_editar();
+                    JOptionPane.showMessageDialog(vista, "Actualice los datos del donante");
+                }
+            }
+        });
+        
+        this.vista.btn_aceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(validar_campos()){
+                    Donante donante_edit = crear_donante_campos();
+                    modeloC.editaDonate(codDonante, donante_edit);
+                    JOptionPane.showMessageDialog(vista, "Donante editado exitosamente");
+                    actualizar_tabla();
+                    limpiar_campos();
+                    vista_registrar();
+                }
+            }
+        });
+        
+        this.vista.btn_cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiar_campos();
+                vista_registrar();
+            }
+        });
+        
+        this.vista.btn_eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validar_seleccion_tabla()) {
+                    int codDonante = donante_tabla().getCodigo();
+                    modeloC.eliminarDonante(codDonante);
+                    actualizar_tabla();
+                    JOptionPane.showMessageDialog(vista, "Donante Eliminado");
+                }
+            }
+        });
+        
+    }
+    
+    public boolean validar_correo(){
+        //formato correo
+        String correo = vista.fld_correo.getText();
+        String regex_correo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
+        //validar formato
+        Pattern pattern_correo = Pattern.compile(regex_correo);
+        Matcher matcher_correo = pattern_correo.matcher(correo);
+        
+        return matcher_correo.matches();
+    }
+    
+    public boolean validar_fechaNacimiento(){
+        //formato fecha
+        String fechaNacimiento = vista.fld_fecha_nacimiento.getText();
+        String regex_fechaNacimiento = "^\\d{2}-\\d{2}-\\d{4}$";
+        //validar formato
+        Pattern pattern_fechaNacimiento = Pattern.compile(regex_fechaNacimiento);
+        Matcher matcher_fechaNacimiento = pattern_fechaNacimiento.matcher(fechaNacimiento);
+        
+        return matcher_fechaNacimiento.matches();
+    }
+    
+    public boolean validar_campos(){
+        if (
+            vista.fld_correo.getText().isEmpty() || 
+            vista.fld_nombre.getText().isEmpty() || 
+            vista.fld_fecha_nacimiento.getText().isEmpty() || 
+            vista.fld_dni.getText().isEmpty() || 
+            vista.fld_telefono.getText().isEmpty()
+            )
+        {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            return false;
         }
-        );
-        
-        this.vista.btnCancelar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                ControladorPrincipalUser controlador = new ControladorPrincipalUser(Repositorio.usuario_validado, new frmPrincipalUser());
-                controlador.iniciar();
-                vista.dispose();
-                }
-            }
-        );
-        
-        
-        this.vista.btnEditar1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int fila = vista.tblDonanteRepo.getSelectedRow();//seleccion de fila de la tabla
-                
-                if (fila == -1) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar un donante");
-                } else {
-                    int valor = Integer.parseInt(vista.tblDonanteRepo.getValueAt(fila, 0).toString());//codigo de donante
-                    codEditar=valor;
-                    Donante donante = modeloC.buscar(valor);
-                    llenarCampos(donante);
-                    
-                    vista.btnCancelar.setEnabled(false);
-                    vista.btnEditar1.setEnabled(false);
-                    vista.btnEliminar.setEnabled(false);
-                    vista.btnRegistrar.setEnabled(false);
-                    vista.btnEditarOK.setEnabled(true);
-
-                    JOptionPane.showMessageDialog(null, "Actualice los datos del donante");
-                    
-                }
-
-            }
+        if (!validar_correo()) {
+            JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
+            return false;
+        } 
+        if (!validar_fechaNacimiento()) {
+            JOptionPane.showMessageDialog(null, "La fecha de nacimiento no es válida.");
+            return false;
         }
-        );
-        
-        this.vista.btnEditarOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String numTelefono;
-                int edad;
-                Donante donante = new Donante();
-                
-                if (vista.txtCorreo.getText().isEmpty() || 
-                    vista.txtNombreDonante.getText().isEmpty() || 
-                    vista.txtFechaNac.getText().isEmpty() || 
-                    vista.txtDNIEmpleado.getText().isEmpty() || 
-                    vista.lblTelefonoEmpleado.getText().isEmpty()
-                    )
-                {
-                    JOptionPane.showMessageDialog(null, "Complete todos los campos");
-                } else {
-                    try {
-                        numTelefono=vista.lblTelefonoEmpleado.getText();
-                        try {
-                            donante.setNombre(vista.txtNombreDonante.getText());
-                            donante.setFechaNac(vista.txtFechaNac.getText());
-                            donante.setDNI(vista.txtDNIEmpleado.getText());
-                            donante.setTelefono(numTelefono);
-                            donante.setCorreo(vista.txtCorreo.getText());
-
-                            modeloC.editaDonate(codEditar, donante);
-                            
-                            JOptionPane.showMessageDialog(null, "Donante editado");
-                            actualizarTabla();
-                            limpiarCampos();
-                            vista.btnCancelar.setEnabled(true);
-                            vista.btnEditar1.setEnabled(true);
-                            vista.btnEliminar.setEnabled(true);
-                            vista.btnRegistrar.setEnabled(true);
-                            vista.btnEditarOK.setEnabled(false);
-                            
-                            codEditar=0;
-                            
-                        } catch (NumberFormatException ex1) {
-                            JOptionPane.showMessageDialog(null, "Dato invalido");
-                        }
-                    } catch (NumberFormatException ex2) {
-                        JOptionPane.showMessageDialog(null, "Num. celular invalido");
-                    }
-                }
-            }
+        if (Integer.parseInt(vista.fld_dni.getText()) < 10000000){
+            JOptionPane.showMessageDialog(null, "El DNI debe tener 8 digitos");
+            return false;
         }
-        );
+        if (Integer.parseInt(vista.fld_telefono.getText()) < 100000000){
+            JOptionPane.showMessageDialog(null, "El teléfono debe tener 9 digitos");
+            return false;
+        }
+        return true;
+    }
+    
+    public Donante crear_donante_campos(){
+        Donante donante = new Donante(
+            vista.fld_fecha_nacimiento.getText(),
+            vista.fld_nombre.getText(),
+            vista.fld_correo.getText(),
+            vista.fld_dni.getText(),
+            vista.fld_telefono.getText());
+        return donante;
+    }
+    
+    public boolean validar_seleccion_tabla(){
+        filaTabla = vista.tbl_donantes.getSelectedRow();
+        if (filaTabla < 0) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un donante");
+            return false;
+        }
+        return true;
+    }
         
+    public Donante donante_tabla(){
+        codDonante = Integer.parseInt(vista.tbl_donantes.getValueAt(filaTabla, 0).toString());
+        Donante donante = modeloC.buscar(codDonante);
+        return donante;
     }
     
-    public void actualizarTabla(){
-        this.vista.tblDonanteRepo.setModel(ConsultasDonante.listar());
-        this.vista.tblDonanteRepo.getTableHeader().setReorderingAllowed(false);//para que no se mueva
+    public void llenar_campos(Donante donante){
+        this.vista.fld_nombre.setText(donante.getNombre());
+        this.vista.fld_fecha_nacimiento.setText(donante.getFechaNac());
+        this.vista.fld_dni.setText(donante.getDNI());
+        this.vista.fld_telefono.setText(String.valueOf(donante.getTelefono()));
+        this.vista.fld_correo.setText(donante.getCorreo());
     }
     
-    
-    
-    public void limpiarCampos(){
-        this.vista.txtNombreDonante.setText("");
-        this.vista.txtFechaNac.setText("");
-        this.vista.txtDNIEmpleado.setText("");
-        this.vista.lblTelefonoEmpleado.setText("");
-        this.vista.txtCorreo.setText("");
+    public void activarBoton(JButton boton){
+        boton.setEnabled(true);
+        boton.setVisible(true);
     }
-    public void llenarCampos(Donante donante){
-        this.vista.txtNombreDonante.setText(donante.getNombre());
-        this.vista.txtFechaNac.setText(donante.getFechaNac());
-        this.vista.txtDNIEmpleado.setText(donante.getDNI());
-        this.vista.lblTelefonoEmpleado.setText(String.valueOf(donante.getTelefono()));
-        this.vista.txtCorreo.setText(donante.getCorreo());
+    
+    public void desactivarBoton(JButton boton){
+        boton.setEnabled(false);
+        boton.setVisible(false);
     }
+    
+    public void vista_editar(){
+        desactivarBoton(vista.btn_editar);
+        desactivarBoton(vista.btn_eliminar);
+        desactivarBoton(vista.btn_registrar);
+        activarBoton(vista.btn_aceptar);
+        activarBoton(vista.btn_cancelar);
+    }
+    
+    public void vista_registrar(){
+        activarBoton(vista.btn_editar);
+        activarBoton(vista.btn_eliminar);
+        activarBoton(vista.btn_registrar);
+        desactivarBoton(vista.btn_aceptar);
+        desactivarBoton(vista.btn_cancelar);
+    }
+    
+    public void regresar_menu_usuario(){
+        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser(), Repositorio.usuario_validado);
+        controladoruser.iniciar();
+        vista.dispose();
+    }
+    
+    public void actualizar_tabla(){
+        this.vista.tbl_donantes.setModel(ConsultasDonante.listar());
+        this.vista.tbl_donantes.getTableHeader().setReorderingAllowed(false);//para que no se mueva
+    }
+    
+    public void limpiar_campos(){
+        this.vista.fld_nombre.setText("");
+        this.vista.fld_fecha_nacimiento.setText("");
+        this.vista.fld_dni.setText("");
+        this.vista.fld_telefono.setText("");
+        this.vista.fld_correo.setText("");
+    }
+    
     public void iniciar() {
         this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);
-        vista.btnEditarOK.setEnabled(false);
-        actualizarTabla();
+        desactivarBoton(vista.btn_aceptar);
+        desactivarBoton(vista.btn_cancelar);
+        actualizar_tabla();
     }
 }

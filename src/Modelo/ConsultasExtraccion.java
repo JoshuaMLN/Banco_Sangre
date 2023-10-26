@@ -96,5 +96,30 @@ public class ConsultasExtraccion extends ConexionBaseDatos{
                 System.err.println(e);
             }
         }
-    }    
+    } 
+    //Método para buscar solicitud
+    public ExtraccionSangre buscar(int id){
+        Connection con=conectar();
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        ExtraccionSangre extrac = new ExtraccionSangre();
+        String sql = "select * from extracsangre where id_extrac=? ";
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                extrac.setCodigo(rs.getInt(1));
+                extrac.setDonante(rs.getString(2));
+                extrac.setFecha(rs.getString(3));
+                extrac.setVolumen(rs.getFloat(4));
+                extrac.setGrupoSanguineo(rs.getString(5));
+                extrac.setRh(rs.getString(6));
+                
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return extrac;
+    }
 }

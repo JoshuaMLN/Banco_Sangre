@@ -1,11 +1,11 @@
 
 package Main;
 
-import Controlador.ControladorSistema;
+import Controlador.ControladorLogin;
 import Datos.Repositorio;
 import Modelo.ConsultasAdministrador;
 import Modelo.ConsultasUsuarios;
-import Vista.frmSistema;
+import Vista.frmLogin;
 
 public class SABS {
     public static void main(String[] args) {
@@ -13,7 +13,7 @@ public class SABS {
         cU.llenar();
         ConsultasAdministrador cA = new ConsultasAdministrador();
         cA.llenar();
-        ControladorSistema controlador = new ControladorSistema(Repositorio.usuarios,Repositorio.administradores, new frmSistema());
+        ControladorLogin controlador = new ControladorLogin(new frmLogin(), Repositorio.usuarios, Repositorio.administradores);
         controlador.iniciar();
     }
 }

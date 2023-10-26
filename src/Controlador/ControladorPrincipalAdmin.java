@@ -34,7 +34,7 @@ public class ControladorPrincipalAdmin {
         
         this.vista.btnSalir.addActionListener( new ActionListener() {
                 public void actionPerformed(ActionEvent e){
-                    ControladorSistema controlador = new ControladorSistema(Repositorio.usuarios,Repositorio.administradores, new frmSistema() );
+                    ControladorLogin controlador = new ControladorLogin(new frmLogin(), Repositorio.usuarios, Repositorio.administradores);
                     controlador.iniciar();
                     vista.dispose();
                 }

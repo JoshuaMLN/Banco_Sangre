@@ -14,19 +14,21 @@ public class Solicitud {
     private String GrupoSanguineo;
     private String Rh;
     private float Cantidad;
-    private Date Fecha;
+    private String Fecha;
     private SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/YYYY HH:mm");
 
+    public Solicitud(){
+    }
     
     public Solicitud(String Nombre,String Motivo,String GrupoSanguineo,String Rh,float Cantidad){
         this.Codigo = contador;
         contador++;
-        this.Nombre=Nombre;
-        this.Motivo=Motivo;
-        this.GrupoSanguineo=GrupoSanguineo;
-        this.Rh=Rh;
-        this.Cantidad=Cantidad;
-        this.Fecha=new Date();
+        this.Nombre = Nombre;
+        this.Motivo = Motivo;
+        this.GrupoSanguineo = GrupoSanguineo;
+        this.Rh = Rh;
+        this.Cantidad = Cantidad;
+        this.Fecha = sdf.format(new Date());
 
     }
     public int getCodigo(){
@@ -67,14 +69,10 @@ public class Solicitud {
     }
 
     public String getFecha(){
-        return sdf.format(Fecha);
+        return Fecha;
     }
-    public void setFecha(Date Fecha){
+    public void setFecha(String Fecha){
         this.Fecha=Fecha;
-    }
-    @Override
-    public String toString() {
-        return "Solicitud{" + "Codigo:" + Codigo +"Nombre:" + Nombre + ", Motivo:" + Motivo + ", Grupo Sanguineo:" + GrupoSanguineo+ ", Rh:" + Rh +", Cantidad(L):" + Cantidad + ", Fecha y hora:" + sdf.format(Fecha) + "\n"+ '}';
     }
 }
 

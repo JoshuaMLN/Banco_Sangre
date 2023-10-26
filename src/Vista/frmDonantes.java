@@ -22,122 +22,164 @@ public class frmDonantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        btnEditarOK = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnEditar1 = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        btnRegistrar = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        casilla_logo = new javax.swing.JPanel();
+        ico_logo_40x40 = new javax.swing.JLabel();
+        txt_proyecto = new javax.swing.JLabel();
+        txt_empresa = new javax.swing.JLabel();
+        casilla_modulo = new javax.swing.JPanel();
+        btn_atras_ico = new javax.swing.JButton();
+        btn_atras_txt = new javax.swing.JButton();
+        txt_modulo = new javax.swing.JLabel();
+        casilla_formulario = new javax.swing.JPanel();
+        txt_nombre = new javax.swing.JLabel();
+        txt_correo = new javax.swing.JLabel();
+        txt_dni = new javax.swing.JLabel();
+        txt_telefono = new javax.swing.JLabel();
+        txt_fecha_nacimiento = new javax.swing.JLabel();
+        fld_nombre = new javax.swing.JTextField();
+        fld_correo = new javax.swing.JTextField();
+        fld_dni = new javax.swing.JTextField();
+        fld_telefono = new javax.swing.JTextField();
+        fld_fecha_nacimiento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDonanteRepo = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtNombreDonante = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtDNIEmpleado = new javax.swing.JTextField();
-        lblTelefonoEmpleado = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtFechaNac = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
+        tbl_donantes = new javax.swing.JTable();
+        casilla_botones = new javax.swing.JPanel();
+        btn_eliminar = new javax.swing.JButton();
+        btn_editar = new javax.swing.JButton();
+        btn_registrar = new javax.swing.JButton();
+        btn_aceptar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SABS");
         setBackground(new java.awt.Color(243, 95, 95));
+        setSize(new java.awt.Dimension(920, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(243, 95, 95));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        casilla_logo.setBackground(new java.awt.Color(243, 95, 95));
 
-        btnEditarOK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditarOK.setText("Confirmar cambio");
-        btnEditarOK.addActionListener(new java.awt.event.ActionListener() {
+        ico_logo_40x40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Logo_50x50.png"))); // NOI18N
+        ico_logo_40x40.setText("jLabel7");
+
+        txt_proyecto.setBackground(new java.awt.Color(255, 255, 255));
+        txt_proyecto.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_proyecto.setForeground(new java.awt.Color(255, 255, 255));
+        txt_proyecto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_proyecto.setText("SISTEMA DE ADMINISTRACIÓN DEL BANCO DE SANGRE");
+
+        txt_empresa.setBackground(new java.awt.Color(255, 255, 255));
+        txt_empresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_empresa.setForeground(new java.awt.Color(255, 204, 204));
+        txt_empresa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_empresa.setText("Blood Care Bank");
+
+        javax.swing.GroupLayout casilla_logoLayout = new javax.swing.GroupLayout(casilla_logo);
+        casilla_logo.setLayout(casilla_logoLayout);
+        casilla_logoLayout.setHorizontalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_logoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(ico_logo_40x40, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_proyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(417, 417, 417))
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_empresa)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        casilla_logoLayout.setVerticalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_logoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_proyecto)
+                        .addGap(10, 10, 10)
+                        .addComponent(txt_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ico_logo_40x40))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(casilla_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 70));
+
+        casilla_modulo.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_atras_ico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_atras_ico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Regresar_32x32.png"))); // NOI18N
+        btn_atras_ico.setBorder(null);
+        btn_atras_ico.setBorderPainted(false);
+        btn_atras_ico.setContentAreaFilled(false);
+        btn_atras_ico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_atras_ico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarOKActionPerformed(evt);
+                btn_atras_icoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEditarOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 130, 40));
 
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 120, 40));
-
-        btnEditar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditar1.setText("Editar");
-        jPanel2.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 70, 40));
-
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCancelar.setText("Regresar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_atras_txt.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_atras_txt.setText("  ATRAS");
+        btn_atras_txt.setBorder(null);
+        btn_atras_txt.setBorderPainted(false);
+        btn_atras_txt.setContentAreaFilled(false);
+        btn_atras_txt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_atras_txt.setFocusPainted(false);
+        btn_atras_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btn_atras_txtActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 90, 40));
 
-        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRegistrar.setText("Registrar"); // NOI18N
-        jPanel2.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 130, 40));
+        txt_modulo.setBackground(new java.awt.Color(255, 255, 255));
+        txt_modulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txt_modulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_modulo.setText("MÓDULO DE REGISTRO DE DONANTES");
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 910, 60));
+        javax.swing.GroupLayout casilla_moduloLayout = new javax.swing.GroupLayout(casilla_modulo);
+        casilla_modulo.setLayout(casilla_moduloLayout);
+        casilla_moduloLayout.setHorizontalGroup(
+            casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_moduloLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btn_atras_ico)
+                .addGap(0, 0, 0)
+                .addComponent(btn_atras_txt)
+                .addGap(58, 58, 58)
+                .addComponent(txt_modulo)
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+        casilla_moduloLayout.setVerticalGroup(
+            casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_moduloLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_atras_ico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_modulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_atras_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
 
-        jPanel4.setBackground(new java.awt.Color(243, 95, 95));
+        getContentPane().add(casilla_modulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 780, 50));
 
-        tblDonanteRepo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tblDonanteRepo);
+        casilla_formulario.setBackground(new java.awt.Color(255, 204, 204));
 
-        jPanel4.add(jScrollPane1);
+        txt_nombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_nombre.setText("NOMBRE :");
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 590, 250));
+        txt_correo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_correo.setText("CORREO  :");
 
-        jPanel6.setBackground(new java.awt.Color(0, 204, 51));
+        txt_dni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_dni.setText("DNI          :");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel7.setText("REGISTRO DE DONANTE");
-        jPanel6.add(jLabel7);
+        txt_telefono.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_telefono.setText("TELÉFONO (CELULAR) :");
 
-        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 50));
+        txt_fecha_nacimiento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_fecha_nacimiento.setText("FECHA NACIMIENTO  :");
 
-        jPanel5.setBackground(new java.awt.Color(243, 95, 95));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(243, 95, 95));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Nombre: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Correo:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("DNI:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Teléfono (celular):");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-
-        Document document_nombre = txtNombreDonante.getDocument();
+        Document document_nombre = fld_nombre.getDocument();
 
         DocumentFilter filter_nombre = new DocumentFilter() {
             @Override
@@ -157,19 +199,19 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         };
         ((AbstractDocument) document_nombre).setDocumentFilter(filter_nombre);
-        txtNombreDonante.addActionListener(new java.awt.event.ActionListener() {
+        fld_nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        fld_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreDonanteActionPerformed(evt);
+                fld_nombreActionPerformed(evt);
             }
         });
-        txtNombreDonante.addKeyListener(new java.awt.event.KeyAdapter() {
+        fld_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreDonanteKeyTyped(evt);
+                fld_nombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombreDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 160, -1));
 
-        Document document_correo = txtCorreo.getDocument();
+        Document document_correo = fld_correo.getDocument();
 
         DocumentFilter filter_correo = new DocumentFilter() {
             @Override
@@ -189,14 +231,14 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         };
         ((AbstractDocument) document_correo).setDocumentFilter(filter_correo);
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+        fld_correo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        fld_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+                fld_correoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 160, -1));
 
-        Document document_dni = txtDNIEmpleado.getDocument();
+        Document document_dni = fld_dni.getDocument();
 
         DocumentFilter filter_dni = new DocumentFilter() {
             @Override
@@ -216,14 +258,14 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         };
         ((AbstractDocument) document_dni).setDocumentFilter(filter_dni);
-        txtDNIEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+        fld_dni.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        fld_dni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDNIEmpleadoKeyTyped(evt);
+                fld_dniKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDNIEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, -1));
 
-        Document document_telefono = lblTelefonoEmpleado.getDocument();
+        Document document_telefono = fld_telefono.getDocument();
 
         DocumentFilter filter_telefono = new DocumentFilter() {
             @Override
@@ -243,18 +285,19 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         };
         ((AbstractDocument) document_telefono).setDocumentFilter(filter_telefono);
-        lblTelefonoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                lblTelefonoEmpleadoKeyTyped(evt);
+        fld_telefono.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        fld_telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fld_telefonoActionPerformed(evt);
             }
         });
-        jPanel1.add(lblTelefonoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 160, -1));
+        fld_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fld_telefonoKeyTyped(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Fecha Nacimiento:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
-
-        Document document_fecha = txtFechaNac.getDocument();
+        Document document_fecha = fld_fecha_nacimiento.getDocument();
 
         DocumentFilter filter_fecha = new DocumentFilter() {
             @Override
@@ -274,67 +317,218 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         };
         ((AbstractDocument) document_fecha).setDocumentFilter(filter_fecha);
-        txtFechaNac.addActionListener(new java.awt.event.ActionListener() {
+        fld_fecha_nacimiento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        fld_fecha_nacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacActionPerformed(evt);
+                fld_fecha_nacimientoActionPerformed(evt);
             }
         });
-        txtFechaNac.addKeyListener(new java.awt.event.KeyAdapter() {
+        fld_fecha_nacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFechaNacKeyTyped(evt);
+                fld_fecha_nacimientoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 160, -1));
 
-        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 320, 260));
+        tbl_donantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_donantes);
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 970, 340));
+        javax.swing.GroupLayout casilla_formularioLayout = new javax.swing.GroupLayout(casilla_formulario);
+        casilla_formulario.setLayout(casilla_formularioLayout);
+        casilla_formularioLayout.setHorizontalGroup(
+            casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(casilla_formularioLayout.createSequentialGroup()
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fld_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(fld_fecha_nacimiento)))
+                    .addGroup(casilla_formularioLayout.createSequentialGroup()
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_dni)
+                            .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(fld_correo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fld_dni, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fld_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        casilla_formularioLayout.setVerticalGroup(
+            casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(casilla_formularioLayout.createSequentialGroup()
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fld_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(fld_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_telefono)))
+                            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_correo)
+                                    .addComponent(fld_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_dni)
+                                    .addComponent(fld_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fld_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
-        jPanel7.setBackground(new java.awt.Color(0, 204, 51));
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 970, 30));
+        getContentPane().add(casilla_formulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 780, 220));
+
+        casilla_botones.setBackground(new java.awt.Color(255, 255, 255));
+        casilla_botones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_eliminar.setBackground(new java.awt.Color(243, 95, 95));
+        btn_eliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_eliminar.setForeground(new java.awt.Color(255, 204, 204));
+        btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        casilla_botones.add(btn_eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 110, 40));
+
+        btn_editar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_editar.setForeground(new java.awt.Color(243, 95, 95));
+        btn_editar.setText("EDITAR");
+        btn_editar.setContentAreaFilled(false);
+        btn_editar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
+        casilla_botones.add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 110, 40));
+
+        btn_registrar.setBackground(new java.awt.Color(255, 204, 204));
+        btn_registrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_registrar.setForeground(new java.awt.Color(243, 95, 95));
+        btn_registrar.setText("REGISTRAR"); // NOI18N
+        btn_registrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registrarActionPerformed(evt);
+            }
+        });
+        casilla_botones.add(btn_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 110, 40));
+
+        btn_aceptar.setBackground(new java.awt.Color(255, 204, 204));
+        btn_aceptar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_aceptar.setForeground(new java.awt.Color(243, 95, 95));
+        btn_aceptar.setText("ACEPTAR");
+        btn_aceptar.setToolTipText("");
+        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptarActionPerformed(evt);
+            }
+        });
+        casilla_botones.add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 110, 40));
+
+        btn_cancelar.setBackground(new java.awt.Color(243, 95, 95));
+        btn_cancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_cancelar.setForeground(new java.awt.Color(255, 204, 204));
+        btn_cancelar.setText("CANCELAR");
+        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        casilla_botones.add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 40));
+
+        getContentPane().add(casilla_botones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 780, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreDonanteActionPerformed
+    private void fld_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fld_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreDonanteActionPerformed
+    }//GEN-LAST:event_fld_nombreActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void fld_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fld_correoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    }//GEN-LAST:event_fld_correoActionPerformed
 
-    private void btnEditarOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarOKActionPerformed
+    private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarOKActionPerformed
+    }//GEN-LAST:event_btn_aceptarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btn_atras_icoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atras_icoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btn_atras_icoActionPerformed
 
-    private void txtFechaNacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacActionPerformed
+    private void fld_fecha_nacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fld_fecha_nacimientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacActionPerformed
+    }//GEN-LAST:event_fld_fecha_nacimientoActionPerformed
 
-    private void txtNombreDonanteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreDonanteKeyTyped
+    private void fld_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fld_nombreKeyTyped
         char c=evt.getKeyChar();
-        if((c<'a'||c>'z')&&(c<'A'||c>'Z')) evt.consume();
-    }//GEN-LAST:event_txtNombreDonanteKeyTyped
+        if((c<'a'||c>'z')&&(c<'A'||c>'Z')&&(c<'0'||c>'9')) evt.consume();
+    }//GEN-LAST:event_fld_nombreKeyTyped
 
-    private void txtFechaNacKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaNacKeyTyped
+    private void fld_fecha_nacimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fld_fecha_nacimientoKeyTyped
         char c=evt.getKeyChar();
         if((c<'0'||c>'9')&&(c!='-')) evt.consume();
-    }//GEN-LAST:event_txtFechaNacKeyTyped
+    }//GEN-LAST:event_fld_fecha_nacimientoKeyTyped
 
-    private void lblTelefonoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblTelefonoEmpleadoKeyTyped
+    private void fld_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fld_telefonoKeyTyped
         char c=evt.getKeyChar();
         if((c<'0'||c>'9')) evt.consume();
-    }//GEN-LAST:event_lblTelefonoEmpleadoKeyTyped
+    }//GEN-LAST:event_fld_telefonoKeyTyped
 
-    private void txtDNIEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIEmpleadoKeyTyped
+    private void fld_dniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fld_dniKeyTyped
         char c=evt.getKeyChar();
         if((c<'0'||c>'9')) evt.consume();
-    }//GEN-LAST:event_txtDNIEmpleadoKeyTyped
+    }//GEN-LAST:event_fld_dniKeyTyped
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void fld_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fld_telefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fld_telefonoActionPerformed
+
+    private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_registrarActionPerformed
+
+    private void btn_atras_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atras_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_atras_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +571,54 @@ public class frmDonantes extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -387,30 +629,32 @@ public class frmDonantes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnCancelar;
-    public javax.swing.JButton btnEditar1;
-    public javax.swing.JButton btnEditarOK;
-    public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnRegistrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
+    public javax.swing.JButton btn_aceptar;
+    public javax.swing.JButton btn_atras_ico;
+    public javax.swing.JButton btn_atras_txt;
+    public javax.swing.JButton btn_cancelar;
+    public javax.swing.JButton btn_editar;
+    public javax.swing.JButton btn_eliminar;
+    public javax.swing.JButton btn_registrar;
+    private javax.swing.JPanel casilla_botones;
+    private javax.swing.JPanel casilla_formulario;
+    private javax.swing.JPanel casilla_logo;
+    private javax.swing.JPanel casilla_modulo;
+    public javax.swing.JTextField fld_correo;
+    public javax.swing.JTextField fld_dni;
+    public javax.swing.JTextField fld_fecha_nacimiento;
+    public javax.swing.JTextField fld_nombre;
+    public javax.swing.JTextField fld_telefono;
+    private javax.swing.JLabel ico_logo_40x40;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField lblTelefonoEmpleado;
-    public javax.swing.JTable tblDonanteRepo;
-    public javax.swing.JTextField txtCorreo;
-    public javax.swing.JTextField txtDNIEmpleado;
-    public javax.swing.JTextField txtFechaNac;
-    public javax.swing.JTextField txtNombreDonante;
+    public javax.swing.JTable tbl_donantes;
+    private javax.swing.JLabel txt_correo;
+    private javax.swing.JLabel txt_dni;
+    private javax.swing.JLabel txt_empresa;
+    private javax.swing.JLabel txt_fecha_nacimiento;
+    private javax.swing.JLabel txt_modulo;
+    private javax.swing.JLabel txt_nombre;
+    private javax.swing.JLabel txt_proyecto;
+    private javax.swing.JLabel txt_telefono;
     // End of variables declaration//GEN-END:variables
 }

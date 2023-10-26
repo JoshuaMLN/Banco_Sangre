@@ -1,120 +1,138 @@
-
 package Controlador;
 
 import Modelo.*;
 import Vista.*;
 import Datos.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 public class ControladorSolicitud {
-    private frmSolicitud vista;
-    private SolicitudArreglo modelo;
-    
+    private final frmSolicitudes vista;
+    private final ConsultasSangre modeloU = new ConsultasSangre();
     private ConsultasSolicitud modeloC = new ConsultasSolicitud();
-    private ConsultasSangre modeloU = new ConsultasSangre();
+    private int filaTabla = 0;
+    private int codSolicitud = 0;
     
-    public ControladorSolicitud(frmSolicitud vista, SolicitudArreglo modelo) {
+    public ControladorSolicitud(frmSolicitudes vista) {
         this.vista = vista;
-        this.modelo = modelo;
         
-        this.vista.btnRegresar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                ControladorPrincipalUser controlador = new ControladorPrincipalUser(Repositorio.usuario_validado, new frmPrincipalUser());
-                controlador.iniciar();
-                vista.dispose();
-                }
+        ActionListener btnAtrasAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                regresar_menu_usuario();
             }
-        );
-        this.vista.btnAgregar.addActionListener(new ActionListener() {
+        };
+        
+        this.vista.btn_atras_ico.addActionListener(btnAtrasAction);
+        
+        this.vista.btn_atras_txt.addActionListener(btnAtrasAction);
+        
+        this.vista.btn_registrar.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e){
-                String Nombre = null;
-                String Motivo = null;
-                String GrupoSanguineo = null;
-                String Rh = null;
-                float Cantidad;
-
-                if(vista.text_Nombre.getText().isEmpty()||vista.text_Motivo.getText().isEmpty()||vista.text_Cantidad.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Complete todos los campos");
-                }
-                else{
-                    Nombre = String.valueOf(vista.text_Nombre.getText());
-                    Motivo = String.valueOf(vista.text_Motivo.getText());
-                    for(Enumeration i=vista.Sangre.getElements(); i.hasMoreElements();)//Ver que boton del grupo SANGRE esta presionado
-                    {
-                        JRadioButton btn = (JRadioButton)i.nextElement();
-                        if (btn.getModel() == vista.Sangre.getSelection())
-                        {
-                            GrupoSanguineo=btn.getText();
-                        }
-                    }
-                    
-                    for(Enumeration i=vista.Signo.getElements(); i.hasMoreElements();)//Ver que boton del grupo SIGNO esta presionado
-                    {
-                        JRadioButton btn = (JRadioButton)i.nextElement();
-                        if (btn.getModel() == vista.Signo.getSelection())
-                        {
-                            Rh=btn.getText();
-                        }
-                    }
-                    Cantidad = Float.parseFloat(vista.text_Cantidad.getText());
-                    Solicitud em = new Solicitud(Nombre,Motivo,GrupoSanguineo,Rh,Cantidad);
-                    int idSangre = modeloU.idSangre(GrupoSanguineo, Rh);
-                    
-                    if (modeloU.verificaVolumen(idSangre)>=Cantidad){
-                        modeloU.disminuir(idSangre, Cantidad);
-                        //Repositorio.solicitudes.agregar(em);
-                        modeloC.registrarSolicitud(em);
-                        System.out.println("Solicitud AGREGADA");
-                        JOptionPane.showMessageDialog(null, "Solicitud Agregada");
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "No se cuenta con esa cantidad de sangre.");
-                    }
-                    actualizarTabla();
-                    limpiarCampos();
+                if(validar_campos()){
+                    Solicitud solicitud_new = crear_solicitud_campos();
+                    modeloC.registrarSolicitud(solicitud_new);
+                    retirar_sangre(solicitud_new.getGrupoSanguineo(),solicitud_new.getRh());
+                    JOptionPane.showMessageDialog(vista, "Solicitud Agregada");
+                    actualizar_tabla();
+                    limpiar_campos();
                 }
             }
         });
-        this.vista.btnEliminar.addActionListener(new ActionListener() {
+        
+        this.vista.btn_eliminar.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                int fila = vista.tbl_Solicitudes.getSelectedRow();
-                
-                if (fila == -1) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar una solicitud");
-                }else {
-                    int valor = Integer.parseInt(vista.tbl_Solicitudes.getValueAt(fila, 0).toString());
-                    String tipo = vista.tbl_Solicitudes.getValueAt(fila, 3).toString();
-                    String rh = vista.tbl_Solicitudes.getValueAt(fila, 4).toString();
-                    int idSangre = modeloU.idSangre(tipo, rh);
-                    float volumenRegresa =Float.parseFloat(vista.tbl_Solicitudes.getValueAt(fila, 5).toString());
-                    modeloU.añadir(idSangre, volumenRegresa);
-                    modeloC.eliminarSolicitud(valor);
-                    actualizarTabla();
-                    System.out.println("Solicitud Eliminada");
-                    
-                    JOptionPane.showMessageDialog(null, "Solicitud Eliminada");
+                if(validar_seleccion_tabla()){
+                    Solicitud solicitud_bd = solicitud_tabla();
+                    modeloC.eliminarSolicitud(solicitud_bd.getCodigo());
+                    regresar_sangre(solicitud_bd.getGrupoSanguineo(),solicitud_bd.getRh());
+                    actualizar_tabla();
+                    JOptionPane.showMessageDialog(vista, "Solicitud Eliminada");
                     
                 }
             }
         }
         );
     }
-    public void actualizarTabla(){
-        this.vista.tbl_Solicitudes.setModel(ConsultasSolicitud.listar());
+        
+    public boolean validar_campos(){        
+        if(vista.fld_nombre.getText().isEmpty()||vista.fld_motivo.getText().isEmpty()||vista.fld_cantidad.getText().isEmpty()){
+            JOptionPane.showMessageDialog(vista, "Complete todos los campos");
+            return false;
+        }
+        String GrupoSanguineo = vista.box_grupo_sanguineo.getSelectedItem().toString();
+        String Rh = vista.box_factor_rh.getSelectedItem().toString();
+        int idSangre = modeloU.idSangre(GrupoSanguineo, Rh);
+        float Cantidad = Float.parseFloat(vista.fld_cantidad.getText()); 
+        if (modeloU.verificaVolumen(idSangre)<Cantidad){
+            JOptionPane.showMessageDialog(vista, "No se cuenta con esa cantidad de sangre");
+            return false;
+        }
+        return true;
     }
-    public void limpiarCampos(){
-        this.vista.text_Nombre.setText("");
-        this.vista.text_Motivo.setText("");
-        this.vista.text_Cantidad.setText("");
+    
+    public Solicitud crear_solicitud_campos(){
+        String Nombre = String.valueOf(vista.fld_nombre.getText());
+        String Motivo = String.valueOf(vista.fld_motivo.getText());
+        String GrupoSanguineo = vista.box_grupo_sanguineo.getSelectedItem().toString();
+        String Rh = vista.box_factor_rh.getSelectedItem().toString();
+        float Cantidad = Float.parseFloat(vista.fld_cantidad.getText());
+        
+        Solicitud solicitud = new Solicitud(Nombre,Motivo,GrupoSanguineo,Rh,Cantidad);
+        return solicitud;
     }
+    
+    public void retirar_sangre(String GrupoSanguineo, String Rh){
+        float Cantidad = Float.parseFloat(vista.fld_cantidad.getText());
+        int idSangre = modeloU.idSangre(GrupoSanguineo, Rh);
+        modeloU.disminuir(idSangre, Cantidad);
+    }
+    
+    public void regresar_sangre(String GrupoSanguineo, String Rh){
+        float Cantidad =Float.parseFloat(vista.tbl_solicitudes.getValueAt(filaTabla, 5).toString());
+        int idSangre = modeloU.idSangre(GrupoSanguineo, Rh);
+        modeloU.añadir(idSangre, Cantidad);
+    }
+    
+    public boolean validar_seleccion_tabla(){
+        filaTabla = vista.tbl_solicitudes.getSelectedRow();
+        if (filaTabla < 0) {
+            JOptionPane.showMessageDialog(vista, "Debe seleccionar una solicitud");
+            return false;
+        }
+        return true;
+    }
+        
+    public Solicitud solicitud_tabla(){
+        codSolicitud = Integer.parseInt(vista.tbl_solicitudes.getValueAt(filaTabla, 0).toString());
+        Solicitud solicitud = modeloC.buscar(codSolicitud);
+        return solicitud;
+    }
+    
+    public void regresar_menu_usuario(){
+        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser(), Repositorio.usuario_validado);
+        controladoruser.iniciar();
+        vista.dispose();
+    }
+    
+    public void actualizar_tabla(){
+        this.vista.tbl_solicitudes.setModel(ConsultasSolicitud.listar());
+    }
+    
+    public void limpiar_campos(){
+        this.vista.fld_nombre.setText("");
+        this.vista.fld_motivo.setText("");
+        this.vista.fld_cantidad.setText("");
+    }
+    
     public void iniciar() {
         this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);
-        actualizarTabla();
+        actualizar_tabla();
 
     }
 }

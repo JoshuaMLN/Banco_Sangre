@@ -100,7 +100,7 @@ public class ConsultasDonante extends ConexionBaseDatos{
         }
     }
     
-    public void comboDonante(DefaultComboBoxModel donantes){
+    public void comboBoxDonante(DefaultComboBoxModel donantes){
         PreparedStatement ps=null;
         Connection con=conectar();
         ResultSet rs;
@@ -122,7 +122,7 @@ public class ConsultasDonante extends ConexionBaseDatos{
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
-            String sql = "UPDATE donante set nombre_d=?,fecha_naci=?,telf_d=?,correo_d=? WHERE id_donante=?";
+            String sql = "UPDATE donante set nombre_d=?,fecha_naci=?,dni_d=?,telf_d=?,correo_d=? WHERE id_donante=?";
             ps = conexion.prepareStatement(sql);
             ps.setString(1, donante.getNombre());
             ps.setString(2, donante.getFechaNac());
@@ -136,7 +136,7 @@ public class ConsultasDonante extends ConexionBaseDatos{
         }
     }
     
-    //Método para buscar cliente
+    //Método para buscar donante
     public Donante buscar(int id){
         Connection con=conectar();
         PreparedStatement ps=null;
@@ -144,11 +144,11 @@ public class ConsultasDonante extends ConexionBaseDatos{
         Donante d = new Donante();
         String sql = "select * from donante where id_donante=?";
         try{
-            
             ps = con.prepareStatement(sql);
             ps.setInt(1,id);
             rs = ps.executeQuery();
             while(rs.next()){
+                d.setCodigo(rs.getInt(1));
                 d.setNombre(rs.getString(2));
                 d.setFechaNac(rs.getString(3));
                 d.setDNI(rs.getString(4));

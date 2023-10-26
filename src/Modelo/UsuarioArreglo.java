@@ -34,7 +34,7 @@ public class UsuarioArreglo implements Serializable{
         Object resultado[][] = new Object[this.index][3];
         if(!vacio()){
             for(int i = 0; i< this.index;i++){
-                resultado[i][0] = this.vec_usuarios[i].getUsuario();
+                resultado[i][0] = this.vec_usuarios[i].getNombre_Usuario();
                 resultado[i][1] = this.vec_usuarios[i].getContrasena();
             }
         }
@@ -47,7 +47,7 @@ public class UsuarioArreglo implements Serializable{
         if(!vacio()){
             for(int i = 0; i< vec_usuarios.length; i++){
                 if(this.vec_usuarios[i] instanceof Usuario){
-                    resultado[c][0] = this.vec_usuarios[i].getUsuario();
+                    resultado[c][0] = this.vec_usuarios[i].getNombre_Usuario();
                     resultado[c][1] = this.vec_usuarios[i].getContrasena();
                     c++;
                 }

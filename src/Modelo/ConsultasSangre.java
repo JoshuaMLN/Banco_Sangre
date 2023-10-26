@@ -62,7 +62,6 @@ public class ConsultasSangre extends ConexionBaseDatos{
             rs = ps.executeQuery();
             if(rs.next()){
                 busqueda_vol = rs.getFloat("vol_sangre");
-
             }
             conexion.close();
         } catch (Exception e) {
