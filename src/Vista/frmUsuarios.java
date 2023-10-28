@@ -4,6 +4,12 @@
  */
 package Vista;
 
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.AbstractDocument;
+
 public class frmUsuarios extends javax.swing.JFrame {
 
     /**
@@ -22,24 +28,131 @@ public class frmUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
-        tittle = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        casilla_logo = new javax.swing.JPanel();
+        ico_logo_40x40 = new javax.swing.JLabel();
+        txt_proyecto = new javax.swing.JLabel();
+        txt_empresa = new javax.swing.JLabel();
+        casilla_modulo = new javax.swing.JPanel();
+        btn_atras_ico = new javax.swing.JButton();
+        btn_atras_txt = new javax.swing.JButton();
+        txt_modulo = new javax.swing.JLabel();
+        casilla_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        btnSalir = new javax.swing.JButton();
+        tbl_usuarios = new javax.swing.JTable();
+        casilla_blanco = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(0, 204, 51));
+        casilla_logo.setBackground(new java.awt.Color(47, 125, 243));
 
-        tittle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tittle.setText("USUARIOS DEL SISTEMA");
+        ico_logo_40x40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Logo_50x50.png"))); // NOI18N
+        ico_logo_40x40.setText("jLabel7");
 
-        jPanel2.setBackground(new java.awt.Color(243, 95, 95));
+        txt_proyecto.setBackground(new java.awt.Color(255, 255, 255));
+        txt_proyecto.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txt_proyecto.setForeground(new java.awt.Color(255, 255, 255));
+        txt_proyecto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_proyecto.setText("SISTEMA DE ADMINISTRACIÓN DEL BANCO DE SANGRE");
 
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        txt_empresa.setBackground(new java.awt.Color(255, 255, 255));
+        txt_empresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_empresa.setForeground(new java.awt.Color(153, 204, 255));
+        txt_empresa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_empresa.setText("Blood Care Bank");
+
+        javax.swing.GroupLayout casilla_logoLayout = new javax.swing.GroupLayout(casilla_logo);
+        casilla_logo.setLayout(casilla_logoLayout);
+        casilla_logoLayout.setHorizontalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_logoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(ico_logo_40x40, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_proyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(19, Short.MAX_VALUE))
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_empresa)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        casilla_logoLayout.setVerticalGroup(
+            casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_logoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_logoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(casilla_logoLayout.createSequentialGroup()
+                        .addComponent(txt_proyecto)
+                        .addGap(10, 10, 10)
+                        .addComponent(txt_empresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ico_logo_40x40))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(casilla_logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 70));
+
+        casilla_modulo.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_atras_ico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_atras_ico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SABS_Regresar_32x32.png"))); // NOI18N
+        btn_atras_ico.setBorder(null);
+        btn_atras_ico.setBorderPainted(false);
+        btn_atras_ico.setContentAreaFilled(false);
+        btn_atras_ico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_atras_ico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_atras_icoActionPerformed(evt);
+            }
+        });
+
+        btn_atras_txt.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btn_atras_txt.setText("  ATRAS");
+        btn_atras_txt.setBorder(null);
+        btn_atras_txt.setBorderPainted(false);
+        btn_atras_txt.setContentAreaFilled(false);
+        btn_atras_txt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_atras_txt.setFocusPainted(false);
+        btn_atras_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_atras_txtActionPerformed(evt);
+            }
+        });
+
+        txt_modulo.setBackground(new java.awt.Color(255, 255, 255));
+        txt_modulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        txt_modulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txt_modulo.setText("MÓDULO DE USUARIOS");
+
+        javax.swing.GroupLayout casilla_moduloLayout = new javax.swing.GroupLayout(casilla_modulo);
+        casilla_modulo.setLayout(casilla_moduloLayout);
+        casilla_moduloLayout.setHorizontalGroup(
+            casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_moduloLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btn_atras_ico)
+                .addGap(0, 0, 0)
+                .addComponent(btn_atras_txt)
+                .addGap(18, 18, 18)
+                .addComponent(txt_modulo)
+                .addContainerGap(122, Short.MAX_VALUE))
+        );
+        casilla_moduloLayout.setVerticalGroup(
+            casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(casilla_moduloLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(casilla_moduloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_atras_ico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_modulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_atras_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(casilla_modulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, -1));
+
+        casilla_tabla.setBackground(new java.awt.Color(153, 204, 255));
+
+        tbl_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -53,91 +166,41 @@ public class frmUsuarios extends javax.swing.JFrame {
             }
         }
     );
-    jScrollPane1.setViewportView(tblUsuarios);
+    jScrollPane1.setViewportView(tbl_usuarios);
 
-    jPanel4.setBackground(new java.awt.Color(0, 204, 51));
-
-    btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-    btnSalir.setText("Regresar");
-    btnSalir.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnSalirActionPerformed(evt);
-        }
-    });
-
-    javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-    jPanel4.setLayout(jPanel4Layout);
-    jPanel4Layout.setHorizontalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSalir)
-            .addGap(153, 153, 153))
+    javax.swing.GroupLayout casilla_tablaLayout = new javax.swing.GroupLayout(casilla_tabla);
+    casilla_tabla.setLayout(casilla_tablaLayout);
+    casilla_tablaLayout.setHorizontalGroup(
+        casilla_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(casilla_tablaLayout.createSequentialGroup()
+            .addGap(127, 127, 127)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(127, Short.MAX_VALUE))
     );
-    jPanel4Layout.setVerticalGroup(
-        jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel4Layout.createSequentialGroup()
-            .addGap(14, 14, 14)
-            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(16, Short.MAX_VALUE))
+    casilla_tablaLayout.setVerticalGroup(
+        casilla_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(casilla_tablaLayout.createSequentialGroup()
+            .addGap(20, 20, 20)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(20, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-    jPanel2.setLayout(jPanel2Layout);
-    jPanel2Layout.setHorizontalGroup(
-        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(jPanel2Layout.createSequentialGroup()
-            .addGap(55, 55, 55)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(54, Short.MAX_VALUE))
-    );
-    jPanel2Layout.setVerticalGroup(
-        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel2Layout.createSequentialGroup()
-            .addContainerGap(23, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-    );
+    getContentPane().add(casilla_tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 520, 220));
 
-    javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-    jPanel5.setLayout(jPanel5Layout);
-    jPanel5Layout.setHorizontalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tittle)
-            .addGap(57, 57, 57))
-    );
-    jPanel5Layout.setVerticalGroup(
-        jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel5Layout.createSequentialGroup()
-            .addGap(11, 11, 11)
-            .addComponent(tittle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-    );
+    casilla_blanco.setBackground(new java.awt.Color(255, 255, 255));
+    casilla_blanco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    getContentPane().add(casilla_blanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 520, 60));
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private void btn_atras_icoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atras_icoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btn_atras_icoActionPerformed
+
+    private void btn_atras_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atras_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_atras_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,12 +241,17 @@ public class frmUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnSalir;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    public javax.swing.JButton btn_atras_ico;
+    public javax.swing.JButton btn_atras_txt;
+    private javax.swing.JPanel casilla_blanco;
+    private javax.swing.JPanel casilla_logo;
+    private javax.swing.JPanel casilla_modulo;
+    private javax.swing.JPanel casilla_tabla;
+    private javax.swing.JLabel ico_logo_40x40;
     public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tblUsuarios;
-    public javax.swing.JLabel tittle;
+    public javax.swing.JTable tbl_usuarios;
+    private javax.swing.JLabel txt_empresa;
+    private javax.swing.JLabel txt_modulo;
+    private javax.swing.JLabel txt_proyecto;
     // End of variables declaration//GEN-END:variables
 }

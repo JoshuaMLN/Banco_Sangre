@@ -1,6 +1,5 @@
 package Modelo;
 
-import Datos.Repositorio;
 import static Modelo.ConexionBaseDatos.conectar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,11 +52,12 @@ public class ConsultasAdministrador extends ConexionBaseDatos {
         return modelo;
     }
     
-    public void llenar(){
+    public AdministradorArreglo cargarAdministradores(){
         Connection con=conectar();
         PreparedStatement ps=null;
         String sql="SELECT * FROM administrador";
         ResultSet rs;
+        AdministradorArreglo administradores = new AdministradorArreglo(0);
         
         try {
             ps = con.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class ConsultasAdministrador extends ConexionBaseDatos {
             
             while (rs.next()) {
                 Administrador a = new Administrador(rs.getString("nombre_admin"),rs.getString("contra_admin"));
-                Repositorio.administradores.agregar(a);
+                administradores.agregar(a);
             }
             
         } catch (SQLException e) {
@@ -77,6 +77,7 @@ public class ConsultasAdministrador extends ConexionBaseDatos {
             ps=null;
             rs=null;
         }
+        return administradores;
     }
     
 }

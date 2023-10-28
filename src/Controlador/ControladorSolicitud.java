@@ -2,11 +2,11 @@ package Controlador;
 
 import Modelo.*;
 import Vista.*;
-import Datos.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+
 
 public class ControladorSolicitud {
     private final frmSolicitudes vista;
@@ -114,13 +114,14 @@ public class ControladorSolicitud {
     }
     
     public void regresar_menu_usuario(){
-        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser(), Repositorio.usuario_validado);
+        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser());
         controladoruser.iniciar();
         vista.dispose();
     }
     
     public void actualizar_tabla(){
         this.vista.tbl_solicitudes.setModel(ConsultasSolicitud.listar());
+        this.vista.tbl_solicitudes.getTableHeader().setReorderingAllowed(false);
     }
     
     public void limpiar_campos(){

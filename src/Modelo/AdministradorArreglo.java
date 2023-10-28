@@ -68,22 +68,22 @@ public class AdministradorArreglo implements Serializable{
     
     public boolean agregar(Administrador administrador){
         boolean resultado = false;
-        if(!full()){
-            this.vec_administrador[index] = administrador;
-            index++;
-            resultado = true;
-        }else{
-            redimensionar();
+        while(!resultado){
+            if(!full()){
+                this.vec_administrador[index] = administrador;
+                index++;
+                resultado = true;
+            }else{
+                redimensionar();
+            }
         }
         return resultado;
     }
     
     public void redimensionar(){
-        int new_dimension = this.dimension*3;
-        Administrador[] nuevoArreglo = new Administrador[new_dimension];
-        for(int i=0; i < this.index; i++){
-            nuevoArreglo[i] = this.vec_administrador[i];
-        }
+        this.dimension++;
+        Administrador[] nuevoArreglo = new Administrador[this.dimension];
+        System.arraycopy(this.vec_administrador, 0, nuevoArreglo, 0, this.dimension-1);
         this.vec_administrador = nuevoArreglo;
     }
   

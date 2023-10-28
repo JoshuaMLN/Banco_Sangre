@@ -1,50 +1,67 @@
 package Controlador;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import Modelo.*;
 import Vista.*;
 import Datos.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
 public class ControladorPrincipalAdmin {
-    private frmPrincipalAdmin vista;
-    private Administrador modelo;
+    private final frmPrincipalAdmin vista;
+    private final Administrador admin;
     
-    public ControladorPrincipalAdmin(Administrador modelo, frmPrincipalAdmin vista) {
-        this.modelo = modelo;
+    public ControladorPrincipalAdmin(frmPrincipalAdmin vista) {
         this.vista = vista;
+        this.admin = CredencialesLogin.administrador_validado;
         
-        this.vista.btnUsuarios.addActionListener(new ActionListener(){
+        
+        ActionListener btnCerrarSesionAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                regresar_menu_login();
+            }
+        };
+        this.vista.btn_cerrar_sesion_ico.addActionListener(btnCerrarSesionAction);
+        this.vista.btn_cerrar_sesion_txt.addActionListener(btnCerrarSesionAction);
+        
+        this.vista.btn_usuarios.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed (ActionEvent e){
-                ControladorMostrarUsuarios controlador = new ControladorMostrarUsuarios(new frmUsuarios(), Repositorio.usuarios);
-                controlador.iniciar();
-                vista.dispose();
-                }
+                lanzar_menu_usuarios();
             }
-        );
+        });
         
-        this.vista.btnInventario.addActionListener(new ActionListener(){
+        this.vista.btn_inventario.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent e){
-                ControladorInventario controlador = new ControladorInventario(new frmInventario());
-                controlador.iniciar();
-                vista.dispose();
+                lanzar_menu_inventario();
             }
-        }
-        );
-        
-        this.vista.btnSalir.addActionListener( new ActionListener() {
-                public void actionPerformed(ActionEvent e){
-                    ControladorLogin controlador = new ControladorLogin(new frmLogin(), Repositorio.usuarios, Repositorio.administradores);
-                    controlador.iniciar();
-                    vista.dispose();
-                }
-            }
-        );
+        });
     } 
+    
+    public void lanzar_menu_usuarios(){
+        ControladorUsuarios controlador = new ControladorUsuarios(new frmUsuarios());
+        controlador.iniciar();
+        vista.dispose();
+    }
+    
+    public void lanzar_menu_inventario(){
+        ControladorInventario controlador = new ControladorInventario(new frmInventario());
+        controlador.iniciar();
+        vista.dispose();
+    }
+    
+    public void regresar_menu_login(){
+        ControladorLogin controlador = new ControladorLogin( new frmLogin());
+        controlador.iniciar();
+        vista.dispose();
+    }
     
     public void iniciar(){
         this.vista.setLocationRelativeTo(null);
         this.vista.setVisible(true);
-        this.vista.lblUsuario.setText(modelo.getAdministrador());
+        this.vista.txt_nombre_usuario.setText(admin.getAdministrador());
     }
 }

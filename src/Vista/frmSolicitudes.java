@@ -306,7 +306,7 @@ public class frmSolicitudes extends javax.swing.JFrame {
                     .addGroup(casilla_formularioLayout.createSequentialGroup()
                         .addComponent(txt_grupo_sanguineo)
                         .addGap(10, 10, 10)
-                        .addComponent(box_grupo_sanguineo, 0, 106, Short.MAX_VALUE))
+                        .addComponent(box_grupo_sanguineo, 0, 107, Short.MAX_VALUE))
                     .addGroup(casilla_formularioLayout.createSequentialGroup()
                         .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_factor_rh)
@@ -317,7 +317,7 @@ public class frmSolicitudes extends javax.swing.JFrame {
                             .addComponent(box_factor_rh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(20, 20, 20))
         );
         casilla_formularioLayout.setVerticalGroup(
             casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

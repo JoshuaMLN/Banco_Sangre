@@ -2,6 +2,7 @@
 package Modelo;
 
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,14 +43,15 @@ public class ConsultasDonante extends ConexionBaseDatos{
                     filas[i] = rs.getObject(i + 1);
                 }
                 modelo.addRow(filas);
-            }
-            
+            }  
         } catch (SQLException e) {
-            System.out.println("Error de listado: "+e.getMessage());
-        }finally{
-            ps=null;
-            rs=null;
-            
+            System.err.println(e);
+        } finally {
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
         }
         return modelo;
     }
@@ -112,18 +114,55 @@ public class ConsultasDonante extends ConexionBaseDatos{
                 donantes.addElement(rs.getString("nombre_d"));
             }
         } catch (SQLException e) {
-            System.out.println(e.toString());
+            System.err.println(e);
+        } finally {
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
         }
+    }
+    
+    public String[] obtener_correos_registrados(){
+        Connection con = conectar();
+        PreparedStatement ps = null;
+        String sql = "SELECT correo_d FROM donante";
+        ResultSet rs;
+        
+        ArrayList<String> correosList = new ArrayList<>();
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String correo = rs.getString("correo_d");
+                correosList.add(correo);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
+        }
+        // Convierte la lista de correos a un arreglo de cadenas
+        String[] correos_registrados = correosList.toArray(new String[correosList.size()]);
+
+        return correos_registrados;
     }
     
     //Metodo para editar datos de un donante
     public void editaDonate(int idDon, Donante donante){
-        Connection conexion=conectar();
+        Connection con=conectar();
         PreparedStatement ps=null;
         ResultSet rs=null;
         try {
             String sql = "UPDATE donante set nombre_d=?,fecha_naci=?,dni_d=?,telf_d=?,correo_d=? WHERE id_donante=?";
-            ps = conexion.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setString(1, donante.getNombre());
             ps.setString(2, donante.getFechaNac());
             ps.setString(3, donante.getDNI());
@@ -131,8 +170,14 @@ public class ConsultasDonante extends ConexionBaseDatos{
             ps.setString(5, donante.getCorreo());
             ps.setInt(6, idDon);
             ps.execute();
-        } catch (Exception e) {
-            System.out.println(e);
+        }catch(SQLException e){
+            System.err.println(e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
     
@@ -141,24 +186,30 @@ public class ConsultasDonante extends ConexionBaseDatos{
         Connection con=conectar();
         PreparedStatement ps=null;
         ResultSet rs=null;
-        Donante d = new Donante();
+        Donante donante = new Donante();
         String sql = "select * from donante where id_donante=?";
         try{
             ps = con.prepareStatement(sql);
             ps.setInt(1,id);
             rs = ps.executeQuery();
             while(rs.next()){
-                d.setCodigo(rs.getInt(1));
-                d.setNombre(rs.getString(2));
-                d.setFechaNac(rs.getString(3));
-                d.setDNI(rs.getString(4));
-                d.setTelefono(rs.getString(5));
-                d.setCorreo(rs.getString(6));
+                donante.setCodigo(rs.getInt(1));
+                donante.setNombre(rs.getString(2));
+                donante.setFechaNac(rs.getString(3));
+                donante.setDNI(rs.getString(4));
+                donante.setTelefono(rs.getString(5));
+                donante.setCorreo(rs.getString(6));
             }
         }catch(SQLException e){
-            System.out.println(e.toString());
+            System.err.println(e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
-        return d;
+        return donante;
     }
     
 }

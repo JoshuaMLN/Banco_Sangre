@@ -3,7 +3,8 @@ import java.io.Serializable;
 
 public class UsuarioArreglo implements Serializable{
     private Usuario[] vec_usuarios;
-    private int index, dimension;
+    private int  dimension;
+    private int index;
     private final String[] encabezado =  {"USUARIO","CONTRASEÑA"};
 
     public UsuarioArreglo(int dimension) {
@@ -69,22 +70,22 @@ public class UsuarioArreglo implements Serializable{
     
     public boolean agregar(Usuario usuario){
         boolean resultado = false;
-        if(!full()){
-            this.vec_usuarios[index] = usuario;
-            index++;
-            resultado = true;
-        }else{
-            redimensionar();
+        while(!resultado){
+            if(!full()){
+                this.vec_usuarios[index] = usuario;
+                index++;
+                resultado = true;
+            }else{
+                redimensionar();
+            }
         }
         return resultado;
     }
     
     public void redimensionar(){
-        int new_dimension = this.dimension*3;
-        Usuario[] nuevoArreglo = new Usuario[new_dimension];
-        for(int i=0; i < this.index; i++){
-            nuevoArreglo[i] = this.vec_usuarios[i];
-        }
+        this.dimension++;
+        Usuario[] nuevoArreglo = new Usuario[this.dimension];
+        System.arraycopy(this.vec_usuarios, 0, nuevoArreglo, 0, this.dimension-1);
         this.vec_usuarios = nuevoArreglo;
     }
   

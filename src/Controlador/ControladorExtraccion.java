@@ -2,12 +2,12 @@ package Controlador;
 
 import Modelo.*;
 import Vista.*;
-import Datos.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+
 
 public class ControladorExtraccion {
     private final frmExtracciones vista;
@@ -66,15 +66,15 @@ public class ControladorExtraccion {
     
     public boolean validar_campos(){
         if (vista.fld_cantidad.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            JOptionPane.showMessageDialog(vista, "Complete todos los campos");
             return false;
         }
         if(Float.parseFloat(vista.fld_cantidad.getText())<=0){
-            JOptionPane.showMessageDialog(null, "Ingrese una cantidad válida");
+            JOptionPane.showMessageDialog(vista, "Ingrese una cantidad válida");
             return false;
         }
         if(Float.parseFloat(vista.fld_cantidad.getText())>500){
-            JOptionPane.showMessageDialog(null, "El volumen máximo aceptado es 500ml");
+            JOptionPane.showMessageDialog(vista, "El volumen máximo aceptado es 500ml");
             return false;
         }
         return true;
@@ -117,14 +117,14 @@ public class ControladorExtraccion {
     }
     
     public void regresar_menu_usuario(){
-        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser(), Repositorio.usuario_validado);
+        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser());
         controladoruser.iniciar();
         vista.dispose();
     }
     
     public void actualizarTabla(){
         this.vista.tbl_extracciones.setModel(ConsultasExtraccion.listar());
-        this.vista.tbl_extracciones.getTableHeader().setReorderingAllowed(false);//para que no se mueva
+        this.vista.tbl_extracciones.getTableHeader().setReorderingAllowed(false);
     }
     
     public void limpiarCampos(){

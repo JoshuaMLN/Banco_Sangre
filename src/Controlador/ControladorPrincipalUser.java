@@ -1,4 +1,3 @@
-
 package Controlador;
 
 import Modelo.*;
@@ -13,9 +12,9 @@ public class ControladorPrincipalUser {
     private final frmPrincipalUser vista;
     private final Usuario user;
     
-    public ControladorPrincipalUser(frmPrincipalUser vista, Usuario modelo) {
+    public ControladorPrincipalUser(frmPrincipalUser vista) {
         this.vista = vista;
-        this.user = modelo;
+        this.user = CredencialesLogin.usuario_validado;
                 
         ActionListener btnCerrarSesionAction = new ActionListener() {
             @Override
@@ -69,7 +68,7 @@ public class ControladorPrincipalUser {
     }
     
     public void regresar_menu_login(){
-        ControladorLogin controlador = new ControladorLogin( new frmLogin(),Repositorio.usuarios, Repositorio.administradores);
+        ControladorLogin controlador = new ControladorLogin( new frmLogin());
         controlador.iniciar();
         vista.dispose();
     }

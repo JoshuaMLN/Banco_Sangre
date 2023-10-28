@@ -1,16 +1,19 @@
-
 package Controlador;
 
-import Datos.*;
 import Modelo.*;
 import Vista.*;
+import Datos.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 
 public class ControladorRegistrarDonantes {
     private final frmDonantes vista;
@@ -109,6 +112,18 @@ public class ControladorRegistrarDonantes {
         return matcher_correo.matches();
     }
     
+    public boolean validar_correo_registrado(){
+        String correo = vista.fld_correo.getText();
+        String[] correos_registrados = CorreosDonantes.correos_registrados;
+        for (String correoExistente : correos_registrados) {
+            if (correoExistente.equals(correo)) {
+                // Ese correo ya ha sido registrado anteriormente
+                return false; 
+            }
+        }
+        return false;
+    }
+    
     public boolean validar_fechaNacimiento(){
         //formato fecha
         String fechaNacimiento = vista.fld_fecha_nacimiento.getText();
@@ -120,6 +135,23 @@ public class ControladorRegistrarDonantes {
         return matcher_fechaNacimiento.matches();
     }
     
+    public boolean validar_edad(){
+        String fechaNacimientoStr = vista.fld_fecha_nacimiento.getText();
+        int edad;
+        
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formato);
+        
+        if(fechaNacimiento.isAfter(fechaActual)){
+            return false;
+        }
+        
+        edad = Period.between(fechaNacimiento, fechaActual).getYears();
+        
+        return edad>=18;
+    }
+    
     public boolean validar_campos(){
         if (
             vista.fld_correo.getText().isEmpty() || 
@@ -129,23 +161,31 @@ public class ControladorRegistrarDonantes {
             vista.fld_telefono.getText().isEmpty()
             )
         {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+            JOptionPane.showMessageDialog(vista, "Complete todos los campos");
             return false;
         }
         if (!validar_correo()) {
-            JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
-            return false;
-        } 
-        if (!validar_fechaNacimiento()) {
-            JOptionPane.showMessageDialog(null, "La fecha de nacimiento no es válida.");
+            JOptionPane.showMessageDialog(vista, "El correo electrónico no es válido.");
             return false;
         }
         if (Integer.parseInt(vista.fld_dni.getText()) < 10000000){
-            JOptionPane.showMessageDialog(null, "El DNI debe tener 8 digitos");
+            JOptionPane.showMessageDialog(vista, "El DNI debe tener 8 digitos");
             return false;
         }
         if (Integer.parseInt(vista.fld_telefono.getText()) < 100000000){
-            JOptionPane.showMessageDialog(null, "El teléfono debe tener 9 digitos");
+            JOptionPane.showMessageDialog(vista, "El teléfono debe tener 9 digitos");
+            return false;
+        }
+        if (!validar_fechaNacimiento()) {
+            JOptionPane.showMessageDialog(vista, "El formato de fecha debe ser dd-MM-yyyy");
+            return false;  
+        }
+        if(!validar_correo_registrado()){
+            JOptionPane.showMessageDialog(vista, "Este correo ya ha sido registrado");
+            return false;
+        }
+        if(!validar_edad()){
+            JOptionPane.showMessageDialog(vista, "No eres mayor de edad");
             return false;
         }
         return true;
@@ -211,14 +251,16 @@ public class ControladorRegistrarDonantes {
     }
     
     public void regresar_menu_usuario(){
-        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser(), Repositorio.usuario_validado);
+        ControladorPrincipalUser controladoruser = new ControladorPrincipalUser(new frmPrincipalUser());
         controladoruser.iniciar();
         vista.dispose();
     }
     
     public void actualizar_tabla(){
         this.vista.tbl_donantes.setModel(ConsultasDonante.listar());
-        this.vista.tbl_donantes.getTableHeader().setReorderingAllowed(false);//para que no se mueva
+        this.vista.tbl_donantes.getTableHeader().setReorderingAllowed(false);
+        //Carga la lista de correos ya registrados.
+        CorreosDonantes.correos_registrados = modeloC.obtener_correos_registrados();
     }
     
     public void limpiar_campos(){
