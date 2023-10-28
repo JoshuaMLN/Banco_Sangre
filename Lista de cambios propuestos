@@ -1,0 +1,21 @@
+Menu Usuario
+1. Modulo Donantes
+	- Agregar Grupo Sanguineo y Rh al donante
+	- No se puede eliminar donantes, solo "desactivarlos"
+
+2. Modulo Solicitud
+	- Eliminar campo Motivo y Nombre de la solicitud
+	- No se puede eliminar solicitudes desde la app
+
+3. Modulo Extraccion
+	- El Donante se escoge despues de elegir el GrupoSanguineo y Rh
+	- Validar la sangre extraida de un donante x dia antes de extraer mas
+	- No se puede eliminar extracciones desde la app
+
+Menu Administradores
+4. Modulo Usuarios
+	- Poder agregar nuevos usuarios, donde el nombre no se repita
+	- Poder "activar" o "desactivar" usuarios
+	- Poder eliminar usuarios
+
+En general el codigo se coloca en la app y no en la BD
