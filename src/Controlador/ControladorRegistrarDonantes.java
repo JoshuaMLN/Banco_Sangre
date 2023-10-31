@@ -121,7 +121,7 @@ public class ControladorRegistrarDonantes {
                 return false; 
             }
         }
-        return false;
+        return true;
     }
     
     public boolean validar_fechaNacimiento(){
