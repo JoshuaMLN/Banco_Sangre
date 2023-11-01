@@ -1,6 +1,6 @@
 package Controlador;
 
-import Modelo.*;
+import Conexion.ConsultasSangre;
 import Vista.*;
 
 import java.awt.event.ActionEvent;

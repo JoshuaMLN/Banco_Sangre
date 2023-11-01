@@ -1,6 +1,6 @@
 package Controlador;
 
-import Modelo.*;
+import Modelo.Administrador;
 import Vista.*;
 import Datos.*;
 

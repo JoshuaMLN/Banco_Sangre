@@ -1,7 +1,6 @@
 
-package Modelo;
+package Conexion;
 
-import static Modelo.ConexionBaseDatos.conectar;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 

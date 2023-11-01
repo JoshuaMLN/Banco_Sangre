@@ -1,6 +1,8 @@
-package Modelo;
+package Conexion;
 
-import static Modelo.ConexionBaseDatos.conectar;
+import Modelo.*;
+
+import static Conexion.ConexionBaseDatos.conectar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

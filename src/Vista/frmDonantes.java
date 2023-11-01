@@ -41,6 +41,9 @@ public class frmDonantes extends javax.swing.JFrame {
         fld_dni = new javax.swing.JTextField();
         fld_telefono = new javax.swing.JTextField();
         fld_fecha_nacimiento = new javax.swing.JTextField();
+        txt_tipo_sangre = new javax.swing.JLabel();
+        box_grupo_sanguineo = new javax.swing.JComboBox<>();
+        box_factor_rh = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_donantes = new javax.swing.JTable();
         casilla_botones = new javax.swing.JPanel();
@@ -329,6 +332,18 @@ public class frmDonantes extends javax.swing.JFrame {
             }
         });
 
+        txt_tipo_sangre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txt_tipo_sangre.setText("TIPO DE SANGRE        :");
+
+        box_grupo_sanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "O", "AB" }));
+
+        box_factor_rh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-" }));
+        box_factor_rh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_factor_rhActionPerformed(evt);
+            }
+        });
+
         tbl_donantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -350,24 +365,34 @@ public class frmDonantes extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(casilla_formularioLayout.createSequentialGroup()
-                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fld_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(fld_fecha_nacimiento)))
+                        .addComponent(txt_telefono)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fld_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(casilla_formularioLayout.createSequentialGroup()
                         .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_dni)
-                            .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(10, 10, 10)
-                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(fld_correo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fld_dni, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fld_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_dni)
+                                    .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txt_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_correo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(10, 10, 10)
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(fld_correo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fld_dni, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fld_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(casilla_formularioLayout.createSequentialGroup()
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txt_tipo_sangre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(casilla_formularioLayout.createSequentialGroup()
+                                        .addComponent(box_grupo_sanguineo, 0, 1, Short.MAX_VALUE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(box_factor_rh, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fld_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
@@ -376,32 +401,35 @@ public class frmDonantes extends javax.swing.JFrame {
             casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(casilla_formularioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(casilla_formularioLayout.createSequentialGroup()
                         .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fld_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(casilla_formularioLayout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(fld_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_telefono)))
-                            .addGroup(casilla_formularioLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_correo)
-                                    .addComponent(fld_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_dni)
-                                    .addComponent(fld_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_correo)
+                            .addComponent(fld_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_dni)
+                            .addComponent(fld_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_telefono)
+                            .addComponent(fld_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
                         .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fld_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                            .addComponent(txt_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(box_factor_rh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(casilla_formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(box_grupo_sanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_tipo_sangre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         getContentPane().add(casilla_formulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 780, 220));
@@ -530,6 +558,10 @@ public class frmDonantes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_atras_txtActionPerformed
 
+    private void box_factor_rhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_factor_rhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_factor_rhActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -629,6 +661,8 @@ public class frmDonantes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox<String> box_factor_rh;
+    public javax.swing.JComboBox<String> box_grupo_sanguineo;
     public javax.swing.JButton btn_aceptar;
     public javax.swing.JButton btn_atras_ico;
     public javax.swing.JButton btn_atras_txt;
@@ -656,5 +690,6 @@ public class frmDonantes extends javax.swing.JFrame {
     private javax.swing.JLabel txt_nombre;
     private javax.swing.JLabel txt_proyecto;
     private javax.swing.JLabel txt_telefono;
+    private javax.swing.JLabel txt_tipo_sangre;
     // End of variables declaration//GEN-END:variables
 }

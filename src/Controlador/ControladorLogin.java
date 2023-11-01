@@ -1,6 +1,11 @@
 package Controlador;
 
-import Modelo.*;
+import Conexion.ConsultasAdministrador;
+import Conexion.ConsultasUsuarios;
+import Modelo.Usuario;
+import Modelo.Administrador;
+import Modelo.AdministradorArreglo;
+import Modelo.UsuarioArreglo;
 import Vista.*;
 import Datos.*;
 

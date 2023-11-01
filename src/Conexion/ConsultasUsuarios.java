@@ -1,11 +1,8 @@
-package Modelo;
+package Conexion;
 
-import static Modelo.ConexionBaseDatos.conectar;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import Modelo.*;
+
+import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultasUsuarios extends ConexionBaseDatos {

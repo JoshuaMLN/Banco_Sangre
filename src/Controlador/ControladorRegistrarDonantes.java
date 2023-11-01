@@ -1,5 +1,6 @@
 package Controlador;
 
+import Conexion.*;
 import Modelo.*;
 import Vista.*;
 import Datos.*;
@@ -92,7 +93,7 @@ public class ControladorRegistrarDonantes {
             public void actionPerformed(ActionEvent e) {
                 if (validar_seleccion_tabla()) {
                     int codDonante = donante_tabla().getCodigo();
-                    modeloC.eliminarDonante(codDonante);
+                    modeloC.desactivarDonante(codDonante);
                     actualizar_tabla();
                     JOptionPane.showMessageDialog(vista, "Donante Eliminado");
                 }
@@ -121,7 +122,7 @@ public class ControladorRegistrarDonantes {
                 return false; 
             }
         }
-        return false;
+        return true;
     }
     
     public boolean validar_fechaNacimiento(){
@@ -191,20 +192,38 @@ public class ControladorRegistrarDonantes {
         return true;
     }
     
+    public String formato_nombre(String nombre) {
+        String[] palabras = nombre.split("\\s+");
+        StringBuilder resultado = new StringBuilder();
+
+        for (String palabra : palabras) {
+            if (palabra.length() > 0) {
+                resultado.append(Character.toUpperCase(palabra.charAt(0)));
+                if (palabra.length() > 1) {
+                    resultado.append(palabra.substring(1).toLowerCase());
+                }
+            }
+        resultado.append(" ");
+    }
+    return resultado.toString().trim();
+}
+    
     public Donante crear_donante_campos(){
         Donante donante = new Donante(
-            vista.fld_fecha_nacimiento.getText(),
-            vista.fld_nombre.getText(),
+            formato_nombre(vista.fld_nombre.getText()),
             vista.fld_correo.getText(),
             vista.fld_dni.getText(),
-            vista.fld_telefono.getText());
+            vista.fld_telefono.getText(),
+            vista.fld_fecha_nacimiento.getText(),
+            vista.box_grupo_sanguineo.getSelectedItem().toString(),
+            vista.box_factor_rh.getSelectedItem().toString());
         return donante;
     }
     
     public boolean validar_seleccion_tabla(){
         filaTabla = vista.tbl_donantes.getSelectedRow();
         if (filaTabla < 0) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un donante");
+            JOptionPane.showMessageDialog(vista, "Debe seleccionar un donante");
             return false;
         }
         return true;
@@ -212,16 +231,18 @@ public class ControladorRegistrarDonantes {
         
     public Donante donante_tabla(){
         codDonante = Integer.parseInt(vista.tbl_donantes.getValueAt(filaTabla, 0).toString());
-        Donante donante = modeloC.buscar(codDonante);
+        Donante donante = modeloC.buscarDonante(codDonante);
         return donante;
     }
     
     public void llenar_campos(Donante donante){
-        this.vista.fld_nombre.setText(donante.getNombre());
-        this.vista.fld_fecha_nacimiento.setText(donante.getFechaNac());
-        this.vista.fld_dni.setText(donante.getDNI());
-        this.vista.fld_telefono.setText(String.valueOf(donante.getTelefono()));
-        this.vista.fld_correo.setText(donante.getCorreo());
+        vista.fld_nombre.setText(donante.getNombre());
+        vista.fld_correo.setText(donante.getCorreo());
+        vista.fld_dni.setText(donante.getDNI());
+        vista.fld_telefono.setText(String.valueOf(donante.getTelefono()));
+        vista.fld_fecha_nacimiento.setText(donante.getFechaNac());
+        vista.box_grupo_sanguineo.setSelectedItem(donante.getGrupoSanguineo());
+        vista.box_factor_rh.setSelectedItem(donante.getFactorRh());
     }
     
     public void activarBoton(JButton boton){
@@ -257,25 +278,26 @@ public class ControladorRegistrarDonantes {
     }
     
     public void actualizar_tabla(){
-        this.vista.tbl_donantes.setModel(ConsultasDonante.listar());
-        this.vista.tbl_donantes.getTableHeader().setReorderingAllowed(false);
+        vista.tbl_donantes.setModel(ConsultasDonante.tablaDonantes());
+        vista.tbl_donantes.getTableHeader().setReorderingAllowed(false);
         //Carga la lista de correos ya registrados.
         CorreosDonantes.correos_registrados = modeloC.obtener_correos_registrados();
     }
     
     public void limpiar_campos(){
-        this.vista.fld_nombre.setText("");
-        this.vista.fld_fecha_nacimiento.setText("");
-        this.vista.fld_dni.setText("");
-        this.vista.fld_telefono.setText("");
-        this.vista.fld_correo.setText("");
+        vista.fld_nombre.setText("");
+        vista.fld_correo.setText("");
+        vista.fld_dni.setText("");
+        vista.fld_telefono.setText("");
+        vista.fld_fecha_nacimiento.setText("");
+        vista.box_grupo_sanguineo.setSelectedIndex(0);
+        vista.box_factor_rh.setSelectedIndex(0);
     }
     
     public void iniciar() {
-        this.vista.setLocationRelativeTo(null);
-        this.vista.setVisible(true);
-        desactivarBoton(vista.btn_aceptar);
-        desactivarBoton(vista.btn_cancelar);
+        vista.setLocationRelativeTo(null);
+        vista.setVisible(true);
+        vista_registrar();
         actualizar_tabla();
     }
 }

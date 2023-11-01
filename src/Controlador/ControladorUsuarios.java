@@ -1,6 +1,6 @@
 package Controlador;
 
-import Modelo.*;
+import Conexion.ConsultasUsuarios;
 import Vista.*;
 
 import java.awt.event.ActionEvent;
